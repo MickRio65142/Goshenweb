@@ -4,8 +4,8 @@ return [
     'gateway' => env('PAYMENT_GATEWAY', 'manual'),
 
     'manual' => [
-        'momo_number' => env('MOMO_NUMBER', '679202265'),
-        'orange_number' => env('ORANGE_NUMBER', '679202265'),
+        'momo_number' => env('MOMO_NUMBER', '678672998'),
+        'orange_number' => env('ORANGE_NUMBER', '696681163'),
         'bank_name' => env('BANK_NAME', 'Afriland First Bank'),
         'bank_account' => env('BANK_ACCOUNT', '12345678901'),
     ],

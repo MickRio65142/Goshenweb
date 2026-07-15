@@ -3,12 +3,12 @@
     <div class="fixed right-0 top-1/2 -translate-y-1/2 flex flex-col gap-1 z-50">
         
         <!-- 1. WhatsApp -->
-        <a href="https://api.whatsapp.com/send?phone=237679202265&text=Hello" target="_blank" class="!bg-[#06d755] hover:!bg-emerald-600 !text-white !w-10 !h-10 md:!w-14 md:!h-14 !rounded-l-xl md:!rounded-l-2xl !shadow-xl !transition-all !duration-300 hover:!-translate-x-1 !flex !items-center !justify-center !border-none !outline-none">
+        <a href="https://api.whatsapp.com/send?phone=237678672998&text=Hello" target="_blank" class="!bg-[#06d755] hover:!bg-emerald-600 !text-white !w-10 !h-10 md:!w-14 md:!h-14 !rounded-l-xl md:!rounded-l-2xl !shadow-xl !transition-all !duration-300 hover:!-translate-x-1 !flex !items-center !justify-center !border-none !outline-none">
             <i class="fa-brands fa-whatsapp !text-xl md:!text-3xl"></i>
         </a>
         
         <!-- 2. Call -->
-        <a href="tel:+237679202265" class="!bg-[#091c3d] hover:!bg-[#c1121f] !text-white !w-10 !h-10 md:!w-14 md:!h-14 !rounded-l-xl md:!rounded-l-2xl !shadow-xl !transition-all !duration-300 hover:!-translate-x-1 !flex !items-center !justify-center !border-none !outline-none">
+        <a href="tel:+237678672998" class="!bg-[#091c3d] hover:!bg-[#c1121f] !text-white !w-10 !h-10 md:!w-14 md:!h-14 !rounded-l-xl md:!rounded-l-2xl !shadow-xl !transition-all !duration-300 hover:!-translate-x-1 !flex !items-center !justify-center !border-none !outline-none">
             <i class="fa-solid fa-phone !text-lg md:!text-2xl"></i>
         </a>
         
@@ -20,7 +20,7 @@
     </div>
 
     <!-- FLOATING CHAT WIDGET (Responsive Sizes) -->
-    <div x-data="{ chatOpen: false, inputText: '', messages: [{ sender: 'system', text: 'Hello! Welcome to Goshen Work Skill Association admissions desk. How can we assist you today?' }], sendMessage() { if (this.inputText.trim() === '') return; this.messages.push({ sender: 'user', text: this.inputText }); this.inputText = ''; setTimeout(() => { this.messages.push({ sender: 'system', text: 'Thank you for your inquiry! Our coordinator will contact you shortly. For immediate assistance, feel free to WhatsApp us directly at +237 679 20 22 65.' }); }, 1200); } }" class="fixed bottom-4 md:bottom-6 right-4 md:right-6 z-50">
+    <div x-data="{ chatOpen: false, inputText: '', messages: [{ sender: 'system', text: 'Hello! Welcome to Goshen Work Skill Association admissions desk. How can we assist you today?' }], sendMessage() { if (this.inputText.trim() === '') return; this.messages.push({ sender: 'user', text: this.inputText }); this.inputText = ''; setTimeout(() => { this.messages.push({ sender: 'system', text: 'Thank you for your inquiry! Our coordinator will contact you shortly. For immediate assistance, feel free to WhatsApp us directly at +237 678 672 998 / +237 696 681 163.' }); }, 1200); } }" class="fixed bottom-4 md:bottom-6 right-4 md:right-6 z-50">
         
         <!-- Chat Button -->
         <button x-on:click="chatOpen = !chatOpen" class="!bg-[#06d755] hover:!bg-emerald-600 !text-white !w-12 !h-12 md:!w-16 md:!h-16 !rounded-full !shadow-2xl !flex !items-center !justify-center !transition-all !duration-300 hover:!scale-110 active:!scale-95 !border-none !outline-none">

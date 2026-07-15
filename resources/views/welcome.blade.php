@@ -42,7 +42,7 @@
         "addressLocality": "Douala",
         "addressCountry": "CM"
       },
-      "telephone": "+237 679 20 22 65",
+      "telephone": "+237 678 672 998",
       "email": "info@goshenworkskill.com"
     }
     </script>
@@ -210,7 +210,7 @@
                         img: '{{ asset("images/hero-home-douala.jpg") }}',
                         fallback: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1600&h=700&q=80',
                         title: 'Premium Education for All',
-                        accent: '9 Accredited Programs • MoMo Payment',
+                        accent: '9 Accredited Programs • Flexible Payment',
                         desc: 'Our Douala office offers course counselling, enrollment, and flexible payment via MTN MoMo, Orange Money, or bank transfer.'
                     },
                     {
@@ -309,11 +309,11 @@
                  x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" 
                  x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" 
                  class="absolute inset-0 z-0">
-                <img :src="slide.img" loading="lazy" class="w-full h-full object-cover opacity-85" alt="Slider BG">
+                <img :src="slide.img" loading="lazy" class="w-full h-full object-cover opacity-95" alt="Slider BG">
             </div>
         </template>
         
-        <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent z-10"></div>
 
         <div class="relative z-20 w-full max-w-[90rem] mx-auto px-6 md:px-12 text-left h-full flex flex-col justify-center">
             <h3 class="text-white font-serif text-xl md:text-2xl lg:text-3xl font-semibold mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] break-words" x-text="slides[activeSlide].title"></h3>
@@ -325,8 +325,8 @@
             <p x-show="!isDeleting" x-transition.opacity.duration.500ms class="text-gray-200 text-sm md:text-base max-w-xl leading-relaxed mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]" x-text="slides[activeSlide].desc"></p>
             
             <div class="flex gap-4">
-                <a href="/packages" class="bg-[#c1121f] hover:bg-[#091c3d] text-white px-5 md:px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider transition duration-300 shadow-lg">Enroll Now &mdash; Pay via MoMo</a>
-                <a href="/packages" class="bg-white/10 hover:bg-white hover:text-[#091c3d] text-white px-5 md:px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider transition duration-300 shadow-lg border border-white/30">View 9 Packages</a>
+                <a href="/courses" class="bg-[#c1121f] hover:bg-[#091c3d] text-white px-5 md:px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider transition duration-300 shadow-lg">Enroll Now</a>
+                <a href="/courses" class="bg-white/10 hover:bg-white hover:text-[#091c3d] text-white px-5 md:px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider transition duration-300 shadow-lg border border-white/30">View 9 Packages</a>
             </div>
         </div>
     </section>
@@ -1030,7 +1030,7 @@
             </div>
             <div class="text-center sm:text-right">
                 <h3 class="font-serif text-xl md:text-3xl font-bold mb-1 md:mb-2 text-[#091c3d] break-words">Call or WhatsApp:</h3>
-                <p class="text-sm md:text-lg text-[#c1121f] font-bold break-words">+237 679 20 22 65</p>
+                <p class="text-sm md:text-lg text-[#c1121f] font-bold break-words">+237 678 672 998 / +237 696 681 163</p>
             </div>
         </div>
     </section>

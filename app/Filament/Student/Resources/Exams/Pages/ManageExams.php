@@ -8,4 +8,10 @@ use Filament\Resources\Pages\ManageRecords;
 class ManageExams extends ManageRecords
 {
     protected static string $resource = ExamResource::class;
+    protected string $view = 'filament.student.resources.exams';
+
+    protected function getHeaderActions(): array
+    {
+        return [];
+    }
 }

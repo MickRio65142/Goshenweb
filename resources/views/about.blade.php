@@ -246,8 +246,8 @@
                 <div class="bg-gray-50 p-4 md:p-6 rounded-xl md:rounded-2xl border border-gray-100 space-y-2 md:space-y-3">
                     <p class="text-[10px] md:text-xs font-bold text-[#091c3d] uppercase tracking-wider">Still need help?</p>
                     <p class="text-[11px] md:text-xs text-gray-500 leading-relaxed break-words">Our Admissions Office is here to assist with your enrollment payments and registration.</p>
-                    <a href="tel:+237679202265" class="inline-flex items-center gap-2 text-[11px] md:text-xs font-bold text-[#c1121f] hover:text-[#091c3d] transition">
-                        <i class="fa-solid fa-phone"></i> +237 679 20 22 65
+                    <a href="tel:+237678672998" class="inline-flex items-center gap-2 text-[11px] md:text-xs font-bold text-[#c1121f] hover:text-[#091c3d] transition">
+                        <i class="fa-solid fa-phone"></i> +237 678 672 998 / +237 696 681 163
                     </a>
                 </div>
             </div>
@@ -621,7 +621,7 @@
             </div>
             <div class="text-center sm:text-right">
                 <h3 class="font-serif text-xl md:text-3xl font-bold mb-1 md:mb-2 text-[#091c3d] break-words">Call or WhatsApp:</h3>
-                <p class="text-sm md:text-lg text-[#c1121f] font-bold break-words">+237 679 20 22 65</p>
+                <p class="text-sm md:text-lg text-[#c1121f] font-bold break-words">+237 678 672 998 / +237 696 681 163</p>
             </div>
         </div>
     </section>

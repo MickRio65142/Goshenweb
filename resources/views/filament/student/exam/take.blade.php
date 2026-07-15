@@ -1,58 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>{{ $exam->title }} | Goshen Work Skill Association</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        [x-cloak] { display: none !important; }
-    </style>
-</head>
-<body class="bg-gray-50" x-data="{ timeLeft: {{ $timeRemaining }}, minutes: 0, seconds: 0, init() { this.updateDisplay(); setInterval(() => { this.timeLeft--; this.updateDisplay(); if(this.timeLeft <= 0) document.getElementById('exam-form').requestSubmit(); }, 1000); }, updateDisplay() { this.minutes = Math.floor(this.timeLeft / 60); this.seconds = this.timeLeft % 60; } }">
-
-    <div class="max-w-4xl mx-auto px-4 py-6">
-        <div class="flex items-center justify-between bg-white rounded-xl shadow-sm border border-gray-100 p-4 mb-6">
-            <div>
-                <h1 class="font-bold text-[#091c3d]">{{ $exam->title }}</h1>
-                <p class="text-xs text-gray-500">Attempt {{ $attempt->attempt_number }} of {{ $exam->max_attempts }}</p>
-            </div>
-            <div class="text-center" :class="timeLeft < 60 ? 'text-red-600 animate-pulse' : 'text-[#091c3d]'">
-                <div class="text-2xl font-bold" x-text="String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0')"></div>
-                <div class="text-xs font-semibold">REMAINING</div>
-            </div>
-        </div>
-
-        <form id="exam-form" action="{{ route('student.exam.submit', ['attemptId' => $attempt->id]) }}" method="POST">
-            @csrf
-            <div class="space-y-4">
-                @foreach($questions as $index => $question)
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 md:p-6">
-                    <p class="font-semibold text-[#091c3d] mb-3">{{ $index + 1 }}. {{ $question->question_text }}</p>
-                    <div class="space-y-2 ml-2">
-                        @foreach(['a', 'b', 'c', 'd'] as $option)
-                        @if(!empty($question['option_' . $option]))
-                        <label class="flex items-center gap-3 p-3 rounded-lg border border-gray-100 hover:border-[#c1121f] hover:bg-[#c1121f]/5 cursor-pointer transition">
-                            <input type="radio" name="question_{{ $question->id }}" value="{{ $option }}" class="accent-[#c1121f]" required>
-                            <span class="text-sm text-gray-700">{{ $question['option_' . $option] }}</span>
-                        </label>
-                        @endif
-                        @endforeach
+<x-filament-panels::page>
+    <x-student.dash-layout title="{{ $exam->title }}">
+        <div class="dash-content">
+            <style>
+                [x-cloak] { display: none !important; }
+                .exam-option { transition: all 0.15s ease; }
+                .exam-option:hover { border-color: var(--crimson); background: color-mix(in srgb, var(--crimson) 5%, transparent); }
+            </style>
+            <div x-data="{ timeLeft: {{ $timeRemaining }}, minutes: 0, seconds: 0, init() { this.updateDisplay(); setInterval(() => { this.timeLeft--; this.updateDisplay(); if(this.timeLeft <= 0) document.getElementById('exam-form').requestSubmit(); }, 1000); }, updateDisplay() { this.minutes = Math.floor(this.timeLeft / 60); this.seconds = this.timeLeft % 60; } }">
+                {{-- Timer Header --}}
+                <div class="stat-card" style="margin-bottom:24px;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;">
+                    <div>
+                        <h2 style="font-size:18px;font-weight:700;color:var(--text);margin:0 0 4px;">{{ $exam->title }}</h2>
+                        <p style="font-size:12px;color:var(--text-muted);margin:0;">Attempt {{ $attempt->attempt_number }} of {{ $exam->max_attempts }}</p>
+                    </div>
+                    <div style="text-align:center;" :style="timeLeft < 60 ? 'color:#dc2626;' : 'color:var(--crimson);'">
+                        <div style="font-size:28px;font-weight:700;line-height:1;" x-text="String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0')"></div>
+                        <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-top:2px;">REMAINING</div>
                     </div>
                 </div>
-                @endforeach
-            </div>
 
-            <div class="mt-8 text-center">
-                <button type="submit" class="bg-[#c1121f] hover:bg-[#091c3d] text-white font-bold py-3 px-10 rounded-lg transition shadow-lg">
-                    <i class="fa-solid fa-check-circle mr-2"></i> Submit Exam
-                </button>
+                {{-- Questions --}}
+                <form id="exam-form" action="{{ route('student.exam.submit', ['attemptId' => $attempt->id]) }}" method="POST">
+                    @csrf
+                    <div style="display:flex;flex-direction:column;gap:16px;">
+                        @foreach($questions as $index => $question)
+                        <div class="dash-section-card">
+                            <p style="font-weight:600;color:var(--text);margin:0 0 12px;font-size:15px;">{{ $index + 1 }}. {{ $question->question_text }}</p>
+                            <div style="display:flex;flex-direction:column;gap:8px;">
+                                @foreach(['a', 'b', 'c', 'd'] as $option)
+                                @if(!empty($question['option_' . $option]))
+                                <label class="exam-option" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:var(--radius-md);border:1px solid var(--border);cursor:pointer;">
+                                    <input type="radio" name="question_{{ $question->id }}" value="{{ $option }}" style="accent-color:var(--crimson);width:16px;height:16px;" required>
+                                    <span style="font-size:14px;color:var(--text);">{{ $question['option_' . $option] }}</span>
+                                </label>
+                                @endif
+                                @endforeach
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+
+                    <div style="margin-top:32px;text-align:center;">
+                        <button type="submit" style="display:inline-flex;align-items:center;gap:8px;background:var(--crimson);color:#fff;font-weight:700;padding:14px 48px;border-radius:var(--radius-md);border:none;cursor:pointer;font-size:15px;box-shadow:var(--shadow-md);transition:all 0.15s;" onmouseover="this.style.background='var(--crimson-hover)'" onmouseout="this.style.background='var(--crimson)'">
+                            <i class="fas fa-check-circle"></i> Submit Exam
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-</body>
-</html>
+        </div>
+    </x-student.dash-layout>
+</x-filament-panels::page>

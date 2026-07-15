@@ -12,7 +12,7 @@
     <!-- Top Contact Bar (Now Optimized for both Desktop and Mobile!) -->
     <div x-show="!scrolled" x-cloak x-transition:leave="transition ease-in duration-300" class="flex w-full bg-white text-gray-700 text-[10px] sm:text-xs py-2 px-4 lg:px-8 justify-between items-center border-b border-gray-100 min-h-[35px] lg:h-[50px] overflow-x-auto hide-scrollbar whitespace-nowrap gap-4 relative z-50">
         <div class="flex items-center gap-4 sm:gap-6 shrink-0">
-            <span class="flex items-center gap-2 font-semibold text-[#091c3d]"><i class="fa-solid fa-phone text-[#c1121f]"></i> +237 679 20 22 65</span>
+            <span class="flex items-center gap-2 font-semibold text-[#091c3d]"><i class="fa-solid fa-phone text-[#c1121f]"></i> +237 678 672 998 / +237 696 681 163</span>
             <!-- Address is hidden on standard phones, shows on tablets and desktops to prevent clutter -->
             <span class="text-gray-400 font-medium hidden sm:inline">Main Campus, Cameroon</span>
         </div>
@@ -73,17 +73,11 @@
                     </button>
                     <!-- Fixed popup menu -->
                     <div x-show="inlinePackageOpen" x-transition x-cloak class="fixed top-[65px] left-1/2 -translate-x-1/2 w-[90vw] max-w-sm bg-white border border-gray-100 shadow-2xl rounded-xl flex flex-col p-3 gap-2.5 z-[120]">
-                        <a href="/packages" class="text-[11px] font-bold text-[#091c3d] border-b border-gray-100 pb-2 hover:text-[#c1121f] transition text-center">View 9 MoMo Packages &rarr;</a>
+                        <a href="/packages" class="text-[11px] font-bold text-[#091c3d] border-b border-gray-100 pb-2 hover:text-[#c1121f] transition text-center">View All Packages &rarr;</a>
                         <div class="grid grid-cols-2 gap-2 pt-1">
-                            <a href="/packages/social-care" class="text-[10px] font-semibold text-gray-600 hover:text-[#c1121f] transition">Social Care Package</a>
-                            <a href="/packages/nursing-aid" class="text-[10px] font-semibold text-gray-600 hover:text-[#c1121f] transition">Nursing Aid Package</a>
-                            <a href="/packages/health-safety" class="text-[10px] font-semibold text-gray-600 hover:text-[#c1121f] transition">Health & Safety</a>
-                            <a href="/packages/first-aid-cpr" class="text-[10px] font-semibold text-gray-600 hover:text-[#c1121f] transition">First Aid & CPR</a>
-                            <a href="/packages/hospitality-tourism" class="text-[10px] font-semibold text-gray-600 hover:text-[#c1121f] transition">Hospitality</a>
-                            <a href="/packages/customer-service" class="text-[10px] font-semibold text-gray-600 hover:text-[#c1121f] transition">Customer Ops</a>
-                            <a href="/packages/travel-business" class="text-[10px] font-semibold text-gray-600 hover:text-[#c1121f] transition">Travel Business</a>
-                            <a href="/packages/airline-ticketing" class="text-[10px] font-semibold text-gray-600 hover:text-[#c1121f] transition">Airline Ticketing</a>
-                            <a href="/packages/personal-support-worker" class="text-[10px] font-semibold text-gray-600 hover:text-[#c1121f] transition">PSW Package</a>
+                            <a href="/packages/healthcare" class="text-[10px] font-semibold text-gray-600 hover:text-[#c1121f] transition">Healthcare Bundle</a>
+                            <a href="/packages/silver" class="text-[10px] font-semibold text-gray-600 hover:text-[#c1121f] transition">Silver Bundle</a>
+                            <a href="/packages/gold" class="text-[10px] font-semibold text-gray-600 hover:text-[#c1121f] transition">Gold Bundle</a>
                         </div>
                     </div>
                 </div>
@@ -140,18 +134,12 @@
                     <a href="/packages" class="flex items-center gap-1 text-[13px] font-semibold pb-1 transition cursor-pointer {{ request()->is('packages*') || request()->is('pricing') ? 'text-[#c1121f] border-b-2 border-[#c1121f]' : 'border-b-2 border-transparent hover:text-[#c1121f]' }}">
                         Packages <i class="fa-solid fa-chevron-down text-[9px] ml-1 transition-transform group-hover:rotate-180"></i>
                     </a>
-                    <div class="absolute top-full left-0 mt-4 w-80 bg-white text-gray-900 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 p-4 border border-gray-100 z-50 grid grid-cols-2 gap-3">
-                        <a href="/packages" class="col-span-2 text-xs font-bold text-[#091c3d] hover:text-[#c1121f] transition border-b border-gray-100 pb-2">All 9 Packages + MoMo</a>
-                        <a href="/packages/social-care" class="text-xs font-semibold text-gray-600 hover:text-[#c1121f] transition">Social Care</a>
-                        <a href="/packages/nursing-aid" class="text-xs font-semibold text-gray-600 hover:text-[#c1121f] transition">Nursing Aid</a>
-                        <a href="/packages/health-safety" class="text-xs font-semibold text-gray-600 hover:text-[#c1121f] transition">Health & Safety</a>
-                        <a href="/packages/first-aid-cpr" class="text-xs font-semibold text-gray-600 hover:text-[#c1121f] transition">First Aid & CPR</a>
-                        <a href="/packages/hospitality-tourism" class="text-xs font-semibold text-gray-600 hover:text-[#c1121f] transition">Hospitality</a>
-                        <a href="/packages/customer-service" class="text-xs font-semibold text-gray-600 hover:text-[#c1121f] transition">Customer Ops</a>
-                        <a href="/packages/travel-business" class="text-xs font-semibold text-gray-600 hover:text-[#c1121f] transition">Travel Business</a>
-                        <a href="/packages/airline-ticketing" class="text-xs font-semibold text-gray-600 hover:text-[#c1121f] transition">Airline Ticketing</a>
-                        <a href="/packages/personal-support-worker" class="text-xs font-semibold text-gray-600 hover:text-[#c1121f] transition">PSW</a>
-                        <a href="/pricing" class="text-xs font-bold text-[#091c3d] hover:text-[#c1121f] transition">Pricing</a>
+                    <div class="absolute top-full left-0 mt-4 min-w-[220px] bg-white text-gray-900 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 p-4 border border-gray-100 z-50 flex flex-col gap-3">
+                        <a href="/packages" class="text-xs font-bold text-[#091c3d] hover:text-[#c1121f] transition border-b border-gray-100 pb-2">View All Packages &rarr;</a>
+                        <a href="/packages/healthcare" class="text-xs font-semibold text-gray-600 hover:text-[#c1121f] transition">Healthcare Bundle</a>
+                        <a href="/packages/silver" class="text-xs font-semibold text-gray-600 hover:text-[#c1121f] transition">Silver Bundle</a>
+                        <a href="/packages/gold" class="text-xs font-semibold text-gray-600 hover:text-[#c1121f] transition">Gold Bundle</a>
+                        <a href="/contact-us" class="text-xs font-bold text-[#c1121f] hover:text-[#091c3d] transition mt-1 pt-2 border-t border-gray-100">Request Custom Pricing &rarr;</a>
                     </div>
                 </div>
 
@@ -206,17 +194,11 @@
                         Packages <i class="fa-solid fa-chevron-down transition-transform text-xs" :class="openPackages ? 'rotate-180 text-[#c1121f]' : ''"></i>
                     </button>
                     <div x-show="openPackages" x-collapse class="flex flex-col gap-3 pl-4 pt-4">
-                        <a href="/packages" class="text-xs font-bold text-[#091c3d] hover:text-[#c1121f]">All 9 Packages + MoMo</a>
-                        <a href="/packages/social-care" class="text-xs text-gray-600 hover:text-[#c1121f]">Social Care Package</a>
-                        <a href="/packages/nursing-aid" class="text-xs text-gray-600 hover:text-[#c1121f]">Nursing Aid Package</a>
-                        <a href="/packages/health-safety" class="text-xs text-gray-600 hover:text-[#c1121f]">Health & Safety Package</a>
-                        <a href="/packages/first-aid-cpr" class="text-xs text-gray-600 hover:text-[#c1121f]">First Aid and CPR Package</a>
-                        <a href="/packages/hospitality-tourism" class="text-xs text-gray-600 hover:text-[#c1121f]">Hospitality and Tourism Package</a>
-                        <a href="/packages/customer-service" class="text-xs text-gray-600 hover:text-[#c1121f]">Customer Service and Computer Operations Package</a>
-                        <a href="/packages/travel-business" class="text-xs text-gray-600 hover:text-[#c1121f]">Travel Business Operations Package</a>
-                        <a href="/packages/airline-ticketing" class="text-xs text-gray-600 hover:text-[#c1121f]">Airline Ticketing and Reservation Package</a>
-                        <a href="/packages/personal-support-worker" class="text-xs text-gray-600 hover:text-[#c1121f]">Personal Support Worker (PSW) Package</a>
-                        <a href="/pricing" class="text-xs font-bold text-[#091c3d] hover:text-[#c1121f]">View Pricing</a>
+                        <a href="/packages" class="text-xs font-bold text-[#091c3d] hover:text-[#c1121f]">View All Packages &rarr;</a>
+                        <a href="/packages/healthcare" class="text-xs text-gray-600 hover:text-[#c1121f]">Healthcare Bundle</a>
+                        <a href="/packages/silver" class="text-xs text-gray-600 hover:text-[#c1121f]">Silver Bundle</a>
+                        <a href="/packages/gold" class="text-xs text-gray-600 hover:text-[#c1121f]">Gold Bundle</a>
+                        <a href="/contact-us" class="text-xs font-bold text-[#c1121f] hover:text-[#091c3d]">Request Custom Pricing &rarr;</a>
                     </div>
                 </div>
 

@@ -256,7 +256,7 @@
                         </div>
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-phone text-[#f5a524]"></i>
-                            <span class="text-xs md:text-sm break-words">+237 679 20 22 65</span>
+                            <span class="text-xs md:text-sm break-words">+237 678 672 998 / +237 696 681 163</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-location-dot text-[#f5a524]"></i>

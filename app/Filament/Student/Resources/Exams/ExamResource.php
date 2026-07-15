@@ -5,8 +5,8 @@ namespace App\Filament\Student\Resources\Exams;
 use App\Filament\Student\Resources\Exams\Pages;
 use App\Models\Exam;
 use App\Models\Enrollment;
+use Filament\Actions\Action;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\IconColumn;
@@ -62,7 +62,7 @@ class ExamResource extends Resource
             ])
             ->filters([])
             ->actions([
-                Tables\Actions\Action::make('start_exam')
+                Action::make('start_exam')
                     ->label('Start Exam')
                     ->icon('heroicon-o-play')
                     ->color('success')

@@ -34,7 +34,7 @@
             <div class="mt-8 p-4 bg-gray-50 rounded-xl border border-gray-100">
                 <p class="text-xs text-gray-500">
                     <i class="fa-solid fa-phone text-[#c1121f] mr-1"></i>
-                    Call or WhatsApp: <strong>+237 679 20 22 65</strong>
+                    Call or WhatsApp: <strong>+237 678 672 998 / +237 696 681 163</strong>
                 </p>
             </div>
         </div>

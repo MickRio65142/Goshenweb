@@ -31,6 +31,7 @@
             <div class="sidebar-section-label">Academics</div>
             <a href="{{ url('/student/academic-calendar') }}" class="sidebar-link {{ $is('/academic-calendar*') ? 'active' : '' }}"><i class="fas fa-calendar-plus"></i>Academic Calendar</a>
             <a href="{{ url('/student/enrollments') }}" class="sidebar-link {{ $is('/enrollments*') ? 'active' : '' }}"><i class="fas fa-book-open"></i>My Courses</a>
+            <a href="{{ url('/student/exams') }}" class="sidebar-link {{ $is('/exams*') ? 'active' : '' }}"><i class="fas fa-pencil-alt"></i>My Exams</a>
             <a href="{{ url('/student/grades') }}" class="sidebar-link {{ $is('/grades*') ? 'active' : '' }}"><i class="fas fa-chart-bar"></i>My Grades & CA</a>
             <a href="{{ url('/student/events') }}" class="sidebar-link {{ $is('/events*') ? 'active' : '' }}"><i class="fas fa-list-alt"></i>Event Log</a>
             <a href="{{ url('/student/timetables') }}" class="sidebar-link {{ $is('/timetables*') ? 'active' : '' }}"><i class="fas fa-calendar-alt"></i>Class Timetables</a>

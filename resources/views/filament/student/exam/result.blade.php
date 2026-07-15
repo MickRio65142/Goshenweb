@@ -1,84 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Exam Result | Goshen Work Skill Association</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    </style>
-</head>
-<body class="bg-[#fcfcfc]">
-
-    <section class="py-16 md:py-24">
-        <div class="max-w-3xl mx-auto px-4">
-            {{-- Score Card --}}
-            <div class="bg-white rounded-2xl shadow-lg border p-8 md:p-12 text-center mb-8 {{ $attempt->passed ? 'border-emerald-100' : 'border-red-100' }}">
-                @if($attempt->passed)
-                <div class="w-20 h-20 mx-auto bg-emerald-100 rounded-full flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-check text-emerald-600 text-4xl"></i>
-                </div>
-                <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#091c3d] mb-2">Congratulations!</h1>
-                <p class="text-gray-500 mb-4">You passed the exam.</p>
-                @else
-                <div class="w-20 h-20 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-xmark text-red-600 text-4xl"></i>
-                </div>
-                <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#091c3d] mb-2">Not This Time</h1>
-                <p class="text-gray-500 mb-4">You didn't reach the passing score of {{ $exam->pass_score }}%.</p>
-                @endif
-
-                <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full font-bold text-lg {{ $attempt->passed ? 'bg-emerald-50 text-emerald-700' : 'bg-red-50 text-red-700' }}">
-                    <span>Score: {{ number_format($attempt->score, 1) }}%</span>
-                    <span class="text-gray-300">|</span>
-                    <span>Pass Mark: {{ $exam->pass_score }}%</span>
-                </div>
-
-                @if(!$attempt->passed && $attempt->attempt_number < $exam->max_attempts)
-                <div class="mt-6">
-                    <p class="text-sm text-gray-500 mb-4">You have {{ $exam->max_attempts - $attempt->attempt_number }} attempt(s) remaining.</p>
-                    <a href="{{ url('/student/exams/' . $exam->id . '/start') }}" class="inline-block bg-[#091c3d] hover:bg-[#c1121f] text-white font-bold py-3 px-8 rounded-lg transition shadow-lg">
-                        <i class="fa-solid fa-rotate mr-2"></i> Retry Exam
-                    </a>
-                </div>
-                @endif
-
-                <div class="mt-6">
-                    <a href="{{ url('/student/exams') }}" class="text-sm text-[#c1121f] hover:text-[#091c3d] font-semibold">
-                        <i class="fa-solid fa-arrow-left mr-1"></i> Back to Exams
-                    </a>
-                </div>
-            </div>
-
-            {{-- Reference Material --}}
-            @if(!empty($referenceMaterial))
-            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 md:p-10">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 rounded-full bg-[#091c3d]/10 flex items-center justify-center">
-                        <i class="fa-solid fa-book-open text-[#091c3d]"></i>
+<x-filament-panels::page>
+    <x-student.dash-layout title="Exam Result">
+        <div class="dash-content">
+            <div style="max-width:640px;margin:0 auto;">
+                {{-- Score Card --}}
+                <div style="background:var(--bg-card);border-radius:var(--radius-lg);border:1px solid {{ $attempt->passed ? '#bbf7d0' : '#fecaca' }};padding:40px;text-align:center;margin-bottom:24px;">
+                    @if($attempt->passed)
+                    <div style="width:72px;height:72px;margin:0 auto 24px;background:#dcfce7;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                        <i class="fas fa-check" style="color:#16a34a;font-size:28px;"></i>
                     </div>
-                    <h2 class="font-bold text-xl text-[#091c3d]">Study Reference</h2>
-                </div>
-                <div class="space-y-6">
-                    @foreach($referenceMaterial as $item)
-                    <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                        <p class="font-semibold text-[#091c3d] mb-2">{{ $item['question'] ?? '' }}</p>
-                        @if(!empty($item['answers']))
-                        <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
-                            @foreach($item['answers'] as $answer)
-                            <li>{{ $answer }}</li>
-                            @endforeach
-                        </ul>
-                        @endif
+                    <h1 style="font-size:28px;font-weight:700;color:var(--text);margin:0 0 8px;">Congratulations!</h1>
+                    <p style="color:var(--text-muted);margin:0 0 24px;">You passed the exam.</p>
+                    @else
+                    <div style="width:72px;height:72px;margin:0 auto 24px;background:#fecaca;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                        <i class="fas fa-xmark" style="color:#dc2626;font-size:28px;"></i>
                     </div>
-                    @endforeach
+                    <h1 style="font-size:28px;font-weight:700;color:var(--text);margin:0 0 8px;">Not This Time</h1>
+                    <p style="color:var(--text-muted);margin:0 0 24px;">You didn't reach the passing score of {{ $exam->pass_score }}%.</p>
+                    @endif
+
+                    <div style="display:inline-flex;align-items:center;gap:16px;padding:12px 24px;border-radius:999px;font-weight:700;font-size:16px;{{ $attempt->passed ? 'background:#dcfce7;color:#16a34a;' : 'background:#fecaca;color:#dc2626;' }}">
+                        <span>Score: {{ number_format($attempt->score, 1) }}%</span>
+                        <span style="color:var(--border);">|</span>
+                        <span>Pass Mark: {{ $exam->pass_score }}%</span>
+                    </div>
+
+                    @if(!$attempt->passed && $attempt->attempt_number < $exam->max_attempts)
+                    <div style="margin-top:24px;">
+                        <p style="font-size:13px;color:var(--text-muted);margin:0 0 12px;">You have {{ $exam->max_attempts - $attempt->attempt_number }} attempt(s) remaining.</p>
+                        <a href="{{ url('/student/exams/' . $exam->id . '/start') }}" style="display:inline-block;background:var(--crimson);color:#fff;font-weight:700;padding:12px 32px;border-radius:var(--radius-md);text-decoration:none;box-shadow:var(--shadow-md);transition:all 0.15s;" onmouseover="this.style.background='var(--crimson-hover)'" onmouseout="this.style.background='var(--crimson)'">
+                            <i class="fas fa-rotate" style="margin-right:8px;"></i> Retry Exam
+                        </a>
+                    </div>
+                    @endif
+
+                    <div style="margin-top:16px;">
+                        <a href="{{ url('/student/exams') }}" style="font-size:13px;color:var(--crimson);font-weight:600;text-decoration:none;">
+                            <i class="fas fa-arrow-left" style="margin-right:4px;"></i> Back to Exams
+                        </a>
+                    </div>
                 </div>
+
+                {{-- Reference Material --}}
+                @if(!empty($referenceMaterial))
+                <div class="dash-section-card">
+                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+                        <div style="width:40px;height:40px;border-radius:50%;background:var(--crimson-light);display:flex;align-items:center;justify-content:center;">
+                            <i class="fas fa-book-open" style="color:var(--crimson);"></i>
+                        </div>
+                        <h2 style="font-size:18px;font-weight:700;color:var(--text);margin:0;">Study Reference</h2>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:16px;">
+                        @foreach($referenceMaterial as $item)
+                        <div style="border-bottom:1px solid var(--border);padding-bottom:16px;{{ $loop->last ? 'border-bottom:none;padding-bottom:0;' : '' }}">
+                            <p style="font-weight:600;color:var(--text);margin:0 0 8px;">{{ $item['question'] ?? '' }}</p>
+                            @if(!empty($item['answers']))
+                            <ul style="margin:0;padding-left:20px;font-size:13px;color:var(--text-muted);display:flex;flex-direction:column;gap:4px;">
+                                @foreach($item['answers'] as $answer)
+                                <li>{{ $answer }}</li>
+                                @endforeach
+                            </ul>
+                            @endif
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
             </div>
-            @endif
         </div>
-    </section>
-</body>
-</html>
+    </x-student.dash-layout>
+</x-filament-panels::page>

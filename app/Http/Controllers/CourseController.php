@@ -297,42 +297,132 @@ class CourseController extends Controller
     // THIS METHOD HANDLES THE GENERAL "/courses" PAGE
     public function index()
     {
-        // Load all courses from our function above
         $courses = $this->getCourses();
-        
-        // Pass them dynamically to a new index page we will create next
         return view('courses.index', compact('courses'));
     }
 
-    // THIS METHOD HANDLES SPECIFIC PAGES (e.g. "/courses/social-care")
+    // THIS METHOD HANDLES SPECIFIC COURSE PAGES (e.g. "/courses/social-care")
     public function show($slug)
     {
         $courses = $this->getCourses();
 
-        // Check if course exists, or fallback to 404
         if (!array_key_exists($slug, $courses)) {
             abort(404);
         }
 
         $course = $courses[$slug];
 
-        // Generate related courses list (Grab 3 random other courses to recommend)
         $related = collect($courses)->except($slug)->take(3);
 
         return view('courses.show', compact('course', 'related', 'slug'));
     }
 
-    // THIS METHOD HANDLES PACKAGE DETAIL PAGES (e.g. "/packages/social-care")
+    public function getPackages()
+    {
+        $allCourses = $this->getCourses();
+
+        return [
+            'healthcare' => [
+                'title' => 'Goshen Healthcare Package',
+                'subtitle' => 'Caregivers, Nursing Aid, CPR & First Aid',
+                'price' => '260,000 FCFA',
+                'duration' => '3 Months',
+                'hero_image' => 'images/slide-nursing-aid.jpg',
+                'description' => 'The Goshen Healthcare Package is designed for individuals seeking a fast-track career in healthcare assistance. This intensive 3-month program combines three critical courses — Social Care, Nursing Aid, and First Aid & CPR — giving you the foundational competencies needed for clinical and community care roles.',
+                'highlights' => [
+                    'Three globally aligned healthcare certifications in one bundle',
+                    'Hands-on clinical simulation labs with Registered Nurse supervision',
+                    'Career pathways into hospitals, care homes, and community health',
+                    'Internship placement support across partner healthcare facilities',
+                ],
+                'modules' => [
+                    ['icon' => 'fa-heart-pulse', 'title' => 'Patient Communication & Vital Signs', 'description' => 'Learn bedside communication, measuring vitals, and patient monitoring techniques.'],
+                    ['icon' => 'fa-shield-halved', 'title' => 'Safeguarding & Risk Prevention', 'description' => 'Master duty of care, risk assessment, and safeguarding vulnerable individuals.'],
+                    ['icon' => 'fa-truck-medical', 'title' => 'CPR & Emergency Wound Management', 'description' => 'Hands-on CPR drills, AED operation, choking emergencies, and bleeding control.'],
+                    ['icon' => 'fa-hand-holding-heart', 'title' => 'Elderly Care & Mobility Support', 'description' => 'Person-centered elderly care, mobility assistance, and daily living support.'],
+                ],
+                'courses_included' => ['social-care', 'nursing-aid', 'first-aid-cpr'],
+            ],
+            'silver' => [
+                'title' => 'Goshen Silver Package',
+                'subtitle' => 'Hospitality & Tourism, Airline Ticketing, Customer Service & ICT',
+                'price' => '200,000 FCFA',
+                'duration' => '3 Months',
+                'hero_image' => 'images/slide-hospitality.jpg',
+                'description' => 'The Goshen Silver Package prepares you for the global service industry by bundling three high-demand programs: Hospitality & Tourism, Airline Ticketing & Reservation, and Customer Service & Computer Operations. Whether your goal is a hotel front desk, a travel agency, or a corporate office, this package delivers.',
+                'highlights' => [
+                    'Three industry-recognized certifications in hospitality, aviation, and ICT',
+                    'Practical training in front office operations, GDS systems, and Microsoft Office',
+                    'Direct entry pathways into hotels, airports, travel agencies, and corporate offices',
+                    'Interview coaching and CV preparation support',
+                ],
+                'modules' => [
+                    ['icon' => 'fa-hotel', 'title' => 'Front Office & Guest Relations', 'description' => 'Hotel operations, front desk management, F&B service standards, and event planning.'],
+                    ['icon' => 'fa-globe', 'title' => 'GDS & Airline Ticketing', 'description' => 'Global Distribution Systems, fare calculation, IATA codes, and ticket issuance.'],
+                    ['icon' => 'fa-headset', 'title' => 'Customer Service & CRM', 'description' => 'Professional communication, conflict resolution, email etiquette, and CRM navigation.'],
+                    ['icon' => 'fa-suitcase-rolling', 'title' => 'Travel Planning & Booking', 'description' => 'Itinerary planning, tour packaging, pricing strategies, and client documentation.'],
+                ],
+                'courses_included' => ['hospitality-tourism', 'airline-ticketing', 'customer-service'],
+            ],
+            'gold' => [
+                'title' => 'Goshen Gold Package',
+                'subtitle' => 'Pick 6+ Courses — One Flat Price',
+                'price' => '200,000 FCFA',
+                'duration' => 'Flexible',
+                'hero_image' => 'images/hero-home-packages.jpg',
+                'description' => 'The Goshen Gold Package is our most flexible and comprehensive offer. Choose 6 or more courses from any category — Healthcare, Safety, Hospitality, Travel & Aviation — and pay a single flat fee. Build your own curriculum and study at your own pace.',
+                'highlights' => [
+                    'Choose 6 or more courses from our full catalog of 9 programs',
+                    'Single flat price regardless of how many courses you select',
+                    'Flexible study schedule — learn at your own pace',
+                    'Ideal for career changers and those seeking multi-skilling',
+                ],
+                'modules' => [
+                    ['icon' => 'fa-layer-group', 'title' => 'Multi-Discipline Curriculum', 'description' => 'Select courses across healthcare, safety, hospitality, and aviation.'],
+                    ['icon' => 'fa-clock', 'title' => 'Flexible Self-Paced Study', 'description' => 'Learn on your own schedule with access to all course materials and labs.'],
+                    ['icon' => 'fa-trophy', 'title' => 'Comprehensive Credentials', 'description' => 'Earn certificates in every selected course for maximum career flexibility.'],
+                ],
+                'courses_included' => [], // user selects on the detail page
+            ],
+        ];
+    }
+
+    // THIS METHOD HANDLES THE GENERAL "/packages" PAGE
+    public function packagesIndex()
+    {
+        $packages = $this->getPackages();
+        return view('packages.index', compact('packages'));
+    }
+
+    // THIS METHOD HANDLES PACKAGE DETAIL PAGES (e.g. "/packages/healthcare")
     public function showPackage($slug)
     {
-        $courses = $this->getCourses();
+        $packages = $this->getPackages();
+        $allCourses = $this->getCourses();
 
-        if (!array_key_exists($slug, $courses)) {
+        if (!array_key_exists($slug, $packages)) {
             abort(404);
         }
 
-        $course = $courses[$slug];
+        $package = $packages[$slug];
 
-        return view('packages.show', compact('course', 'slug'));
+        // Get the actual course data for included courses
+        $includedCourses = [];
+        foreach ($package['courses_included'] as $cSlug) {
+            if (isset($allCourses[$cSlug])) {
+                $course = $allCourses[$cSlug];
+                $course['slug'] = $cSlug;
+                $includedCourses[] = $course;
+            }
+        }
+
+        // Convert allCourses to a flat indexed array for Alpine.js to iterate
+        $allCoursesList = [];
+        foreach ($allCourses as $cSlug => $course) {
+            $course['slug'] = $cSlug;
+            $allCoursesList[] = $course;
+        }
+
+        return view('packages.show', compact('package', 'includedCourses', 'slug', 'allCoursesList'));
     }
 }

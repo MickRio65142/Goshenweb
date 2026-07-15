@@ -108,17 +108,17 @@
                     <div>
                         <h4 class="font-bold text-[#091c3d] text-lg md:text-xl mb-2 md:mb-3 border-b border-gray-200 pb-2">Phone</h4>
                         <div class="flex flex-col gap-3">
-                            <a href="tel:+237679202265" class="flex items-center gap-3 md:gap-4 group">
+                            <a href="tel:+237678672998" class="flex items-center gap-3 md:gap-4 group">
                                 <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-[#091c3d] transition">
                                     <i class="fa-solid fa-phone text-[#091c3d] text-lg md:text-xl group-hover:text-white transition"></i>
                                 </div>
-                                <span class="text-gray-600 text-xs md:text-sm font-medium group-hover:text-[#c1121f] transition break-words">+237 679 20 22 65</span>
+                                <span class="text-gray-600 text-xs md:text-sm font-medium group-hover:text-[#c1121f] transition break-words">+237 678 672 998</span>
                             </a>
-                            <a href="https://api.whatsapp.com/send?phone=237679202265" target="_blank" class="flex items-center gap-3 md:gap-4 group">
+                            <a href="https://api.whatsapp.com/send?phone=237696681163" target="_blank" class="flex items-center gap-3 md:gap-4 group">
                                 <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-emerald-50 flex items-center justify-center shrink-0 group-hover:bg-[#06d755] transition">
                                     <i class="fa-brands fa-whatsapp text-emerald-600 text-lg md:text-xl group-hover:text-white transition"></i>
                                 </div>
-                                <span class="text-gray-600 text-xs md:text-sm font-medium group-hover:text-[#06d755] transition break-words">WhatsApp: +237 679 20 22 65</span>
+                                <span class="text-gray-600 text-xs md:text-sm font-medium group-hover:text-[#06d755] transition break-words">WhatsApp: +237 696 681 163</span>
                             </a>
                         </div>
                     </div>
@@ -434,7 +434,7 @@
             </div>
             <div class="text-center sm:text-right">
                 <h3 class="font-serif text-xl md:text-3xl font-bold mb-1 md:mb-2 text-[#091c3d] break-words">Call or WhatsApp:</h3>
-                <p class="text-sm md:text-lg text-[#c1121f] font-bold break-words">+237 679 20 22 65</p>
+                <p class="text-sm md:text-lg text-[#c1121f] font-bold break-words">+237 678 672 998 / +237 696 681 163</p>
             </div>
         </div>
     </section>

@@ -303,7 +303,7 @@
                         <a href="/contact-us" class="inline-block bg-[#c1121f] hover:bg-white hover:text-[#091c3d] px-6 py-3.5 md:px-8 md:py-4 rounded-lg md:rounded-xl font-bold text-[10px] md:text-xs uppercase tracking-wider transition duration-300 shadow-md">
                             Contact Us
                         </a>
-                        <a href="tel:+237679202265" class="inline-block bg-white/10 hover:bg-white/20 px-6 py-3.5 md:px-8 md:py-4 rounded-lg md:rounded-xl font-bold text-[10px] md:text-xs uppercase tracking-wider transition duration-300 border border-white/20">
+                        <a href="tel:+237678672998" class="inline-block bg-white/10 hover:bg-white/20 px-6 py-3.5 md:px-8 md:py-4 rounded-lg md:rounded-xl font-bold text-[10px] md:text-xs uppercase tracking-wider transition duration-300 border border-white/20">
                             Call Us
                         </a>
                     </div>

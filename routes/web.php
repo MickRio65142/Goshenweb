@@ -27,7 +27,7 @@ Route::get('/gallery', function () { return view('gallery'); });
 
 Route::get('/contact-us', function () { return view('contact'); });
 
-Route::get('/packages', function () { return view('packages.index'); });
+Route::get('/packages', [CourseController::class, 'packagesIndex'])->name('packages.index');
 
 Route::get('/packages/{slug}', [CourseController::class, 'showPackage'])->name('packages.show');
 
@@ -70,6 +70,8 @@ Route::get('/certificates/verify', function () {
 Route::get('/faqs', function () { return view('faqs'); });
 
 // Direct Registration Routes (no exam required)
+Route::get('/register/gold', [DirectRegistrationController::class, 'showGoldForm'])->name('register.gold');
+Route::post('/register/gold', [DirectRegistrationController::class, 'submitGoldRegistration'])->name('register.gold.submit');
 Route::get('/register/{slug}', [DirectRegistrationController::class, 'showForm'])->name('register.show');
 Route::post('/register/{slug}', [DirectRegistrationController::class, 'submitRegistration'])->name('register.submit');
 
