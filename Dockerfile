@@ -29,4 +29,4 @@ RUN php artisan storage:link
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "cp .env.example .env && mkdir -p database/sqlite && touch database/sqlite/database.sqlite && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
+CMD ["sh", "-c", "cp .env.example .env && sed -i '/^APP_KEY=/d' .env && mkdir -p database/sqlite && touch database/sqlite/database.sqlite && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
