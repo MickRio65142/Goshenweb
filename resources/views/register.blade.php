@@ -56,7 +56,7 @@
                                     </div>
                                     <div>
                                         <label class="block text-xs font-semibold text-gray-700 mb-1">Phone Number <span class="text-[#c1121f]">*</span></label>
-                                        <input type="tel" name="phone" value="{{ old('phone') }}" required placeholder="e.g. 679202265"
+                                        <input type="tel" name="phone" value="{{ old('phone') }}" required placeholder="e.g. 678672998 or 696681163"
                                             class="w-full px-4 py-2.5 text-sm border border-gray-200 rounded-lg focus:border-[#c1121f] outline-none">
                                         @error('phone') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                                     </div>
@@ -120,20 +120,29 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-semibold text-gray-700 mb-1">How did you hear about us? <span class="text-gray-400">(optional)</span></label>
+                                        <label class="block text-xs font-semibold text-gray-700 mb-1">How did you hear about us?</label>
                                         <select name="heard_about_us"
                                             class="w-full px-4 py-2.5 text-sm border border-gray-200 rounded-lg focus:border-[#c1121f] outline-none">
                                             <option value="">Select</option>
                                             <option value="Facebook" {{ old('heard_about_us') === 'Facebook' ? 'selected' : '' }}>Facebook</option>
                                             <option value="WhatsApp" {{ old('heard_about_us') === 'WhatsApp' ? 'selected' : '' }}>WhatsApp</option>
-                                            <option value="Friend" {{ old('heard_about_us') === 'Friend' ? 'selected' : '' }}>Friend / Family</option>
+                                            <option value="Friend" {{ old('heard_about_us') === 'Friend' ? 'selected' : '' }}>Friend/Family</option>
                                             <option value="Google" {{ old('heard_about_us') === 'Google' ? 'selected' : '' }}>Google Search</option>
-                                            <option value="Radio" {{ old('heard_about_us') === 'Radio' ? 'selected' : '' }}>Radio</option>
-                                            <option value="Billboard" {{ old('heard_about_us') === 'Billboard' ? 'selected' : '' }}>Billboard / Poster</option>
-                                            <option value="School Visit" {{ old('heard_about_us') === 'School Visit' ? 'selected' : '' }}>School Visit</option>
                                             <option value="Other" {{ old('heard_about_us') === 'Other' ? 'selected' : '' }}>Other</option>
                                         </select>
                                     </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-700 mb-1">Campus <span class="text-[#c1121f]">*</span></label>
+                                        <select name="campus" required
+                                            class="w-full px-4 py-2.5 text-sm border border-gray-200 rounded-lg focus:border-[#c1121f] outline-none">
+                                            <option value="">Select campus</option>
+                                            <option value="douala" {{ old('campus') === 'douala' ? 'selected' : '' }}>Douala Main Campus</option>
+                                            <option value="limbe" {{ old('campus') === 'limbe' ? 'selected' : '' }}>Limbe Campus</option>
+                                        </select>
+                                        @error('campus') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                                    </div>
+                                </div>
+                            </div>
                                 </div>
                             </div>
 
@@ -160,6 +169,7 @@
                                 <h3 class="font-bold text-[#091c3d] text-sm mb-4 border-b border-gray-100 pb-2">
                                     <i class="fa-solid fa-credit-card text-[#c1121f] mr-2"></i> Payment &amp; Subscription
                                 </h3>
+                                {{-- Payment section commented out for future use
                                 <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4 text-xs text-amber-800">
                                     <i class="fa-solid fa-info-circle mr-1"></i>
                                     Pay the subscription fee of <strong>{{ number_format((float) $registrationFee, 0, ',', ' ') }} CFA</strong> via any method below, then enter the transaction reference to complete registration.
@@ -184,6 +194,7 @@
                                         @error('transaction_reference') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                                     </div>
                                 </div>
+                                --}}
                             </div>
 
                             <div class="flex items-start gap-3">
@@ -200,7 +211,7 @@
                             @error('terms_accepted') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
 
                             <button type="submit" class="w-full bg-[#c1121f] hover:bg-[#091c3d] text-white font-bold py-3 px-6 rounded-lg transition shadow-lg text-sm">
-                                <i class="fa-solid fa-user-plus mr-2"></i> Pay &amp; Create Account — {{ number_format((float) $registrationFee, 0, ',', ' ') }} CFA
+                                <i class="fa-solid fa-paper-plane mr-2"></i> Submit Application
                             </button>
                         </div>
                     </form>
@@ -209,9 +220,10 @@
 
             <div class="md:col-span-1">
                 <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sticky top-6">
+{{-- Subscription fee and payment info commented out for future use
                     <h3 class="font-bold text-[#091c3d] mb-3 text-sm">Subscription Fee</h3>
                     <div class="text-3xl font-black text-[#c1121f] mb-4">{{ number_format((float) $registrationFee, 0, ',', ' ') }} CFA</div>
-
+--}}
                     <div class="border-t border-gray-100 pt-4 space-y-3 text-xs text-gray-600">
                         <div class="flex justify-between">
                             <span>Course</span>
@@ -230,10 +242,11 @@
                     <div class="mt-4 p-3 bg-[#091c3d]/5 rounded-lg">
                         <p class="text-xs text-gray-600">
                             <i class="fa-solid fa-shield-halved text-[#c1121f] mr-1"></i>
-                            Your account will be activated once admin confirms your payment.
+                            Your application will be reviewed by our admissions team.
                         </p>
                     </div>
 
+                    {{-- Payment instructions commented out for future use
                     <div class="mt-4 border-t border-gray-100 pt-4">
                         <h4 class="font-bold text-[#091c3d] text-xs mb-3">Payment Instructions</h4>
                         <div class="space-y-3">
@@ -245,6 +258,7 @@
                             @endforeach
                         </div>
                     </div>
+                    --}}
                 </div>
             </div>
         </div>

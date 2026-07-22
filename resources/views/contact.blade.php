@@ -89,18 +89,30 @@
                 <h2 class="font-serif text-3xl md:text-4xl text-[#091c3d] font-bold mb-6 md:mb-8 break-words">We're Always Eager to Hear From You!</h2>
                 
                 <div class="space-y-8 md:space-y-10">
-                    <!-- Address -->
+                    <!-- Addresses -->
                     <div>
-                        <h4 class="font-bold text-[#091c3d] text-lg md:text-xl mb-2 md:mb-3 border-b border-gray-200 pb-2">Address</h4>
-                        <div class="flex items-start gap-3 md:gap-4">
-                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-red-50 flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-location-dot text-[#c1121f] text-lg md:text-xl"></i>
-                            </div>
-                            <p class="text-gray-600 text-xs md:text-sm leading-relaxed mt-1 break-words">
-                                Goshen Work Skill Association,<br>
-                                Main Campus,<br>
-                                Douala – Cameroon
+                        <h4 class="font-bold text-[#091c3d] text-lg md:text-xl mb-3 md:mb-4 border-b border-gray-200 pb-2"><i class="fa-solid fa-location-dot text-[#c1121f] mr-2"></i>Our Campuses</h4>
+
+                        <div class="mb-5 md:mb-6">
+                            <h5 class="font-bold text-[#091c3d] text-sm md:text-base mb-1 md:mb-2">Douala Main Campus</h5>
+                            <p class="text-gray-600 text-xs md:text-sm leading-relaxed break-words">
+                                First Floor, BB incubator House<br>
+                                Beside UBA BANK, Accienne road, Bonaberi
                             </p>
+                            <a href="mailto:Douala@goshenworkskill.com" class="text-xs md:text-sm text-[#c1121f] font-medium hover:underline inline-flex items-center gap-1 mt-1">
+                                <i class="fa-solid fa-envelope text-[10px]"></i> Douala@goshenworkskill.com
+                            </a>
+                        </div>
+
+                        <div>
+                            <h5 class="font-bold text-[#091c3d] text-sm md:text-base mb-1 md:mb-2">Limbe Campus</h5>
+                            <p class="text-gray-600 text-xs md:text-sm leading-relaxed break-words">
+                                First Floor, Suite 101, Royal Detriot Building<br>
+                                by Soccer City, off Amber Bay Gardens, Limbe
+                            </p>
+                            <a href="mailto:Limbe@goshenworkskill.com" class="text-xs md:text-sm text-[#c1121f] font-medium hover:underline inline-flex items-center gap-1 mt-1">
+                                <i class="fa-solid fa-envelope text-[10px]"></i> Limbe@goshenworkskill.com
+                            </a>
                         </div>
                     </div>
 
@@ -123,14 +135,45 @@
                         </div>
                     </div>
 
-                    <!-- Email -->
+                    <!-- Email Addresses -->
                     <div>
-                        <h4 class="font-bold text-[#091c3d] text-lg md:text-xl mb-2 md:mb-3 border-b border-gray-200 pb-2">Email</h4>
-                        <div class="flex items-center gap-3 md:gap-4 group">
-                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-orange-50 flex items-center justify-center shrink-0 group-hover:bg-[#f5a524] transition">
-                                <i class="fa-solid fa-envelope text-[#f5a524] text-lg md:text-xl group-hover:text-white transition"></i>
-                            </div>
-                            <a href="mailto:info@goshenworkskill.com" class="text-gray-600 text-xs md:text-sm font-medium group-hover:text-[#c1121f] transition break-all md:break-words">info@goshenworkskill.com</a>
+                        <h4 class="font-bold text-[#091c3d] text-lg md:text-xl mb-3 md:mb-4 border-b border-gray-200 pb-2"><i class="fa-solid fa-envelope text-[#f5a524] mr-2"></i>Email Addresses</h4>
+                        <div class="space-y-3">
+                            <a href="mailto:Info@goshenworkskill.com" class="flex items-center gap-3 group">
+                                <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center shrink-0 group-hover:bg-[#f5a524] transition">
+                                    <i class="fa-solid fa-envelope text-[#f5a524] text-xs group-hover:text-white transition"></i>
+                                </div>
+                                <span class="text-gray-600 text-xs font-medium group-hover:text-[#c1121f] transition">Info@goshenworkskill.com</span>
+                                <span class="text-[9px] text-gray-400 hidden sm:inline">— General Enquiries</span>
+                            </a>
+                            <a href="mailto:Admin@goshenworkskill.com" class="flex items-center gap-3 group">
+                                <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center shrink-0 group-hover:bg-[#f5a524] transition">
+                                    <i class="fa-solid fa-envelope text-[#f5a524] text-xs group-hover:text-white transition"></i>
+                                </div>
+                                <span class="text-gray-600 text-xs font-medium group-hover:text-[#c1121f] transition">Admin@goshenworkskill.com</span>
+                                <span class="text-[9px] text-gray-400 hidden sm:inline">— Administration</span>
+                            </a>
+                            <a href="mailto:Douala@goshenworkskill.com" class="flex items-center gap-3 group">
+                                <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center shrink-0 group-hover:bg-[#f5a524] transition">
+                                    <i class="fa-solid fa-envelope text-[#f5a524] text-xs group-hover:text-white transition"></i>
+                                </div>
+                                <span class="text-gray-600 text-xs font-medium group-hover:text-[#c1121f] transition">Douala@goshenworkskill.com</span>
+                                <span class="text-[9px] text-gray-400 hidden sm:inline">— Douala Campus</span>
+                            </a>
+                            <a href="mailto:Limbe@goshenworkskill.com" class="flex items-center gap-3 group">
+                                <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center shrink-0 group-hover:bg-[#f5a524] transition">
+                                    <i class="fa-solid fa-envelope text-[#f5a524] text-xs group-hover:text-white transition"></i>
+                                </div>
+                                <span class="text-gray-600 text-xs font-medium group-hover:text-[#c1121f] transition">Limbe@goshenworkskill.com</span>
+                                <span class="text-[9px] text-gray-400 hidden sm:inline">— Limbe Campus</span>
+                            </a>
+                            <a href="mailto:Jobsabroad@goshenworkskill.com" class="flex items-center gap-3 group">
+                                <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center shrink-0 group-hover:bg-[#f5a524] transition">
+                                    <i class="fa-solid fa-envelope text-[#f5a524] text-xs group-hover:text-white transition"></i>
+                                </div>
+                                <span class="text-gray-600 text-xs font-medium group-hover:text-[#c1121f] transition">Jobsabroad@goshenworkskill.com</span>
+                                <span class="text-[9px] text-gray-400 hidden sm:inline">— Jobs Abroad</span>
+                            </a>
                         </div>
                     </div>
 
@@ -138,10 +181,11 @@
                     <div>
                         <h4 class="font-bold text-[#091c3d] text-lg md:text-xl mb-3 md:mb-4 border-b border-gray-200 pb-2">Follow Us</h4>
                         <div class="flex gap-3 md:gap-4">
-                            <a href="#" class="w-10 h-10 rounded-full bg-[#091c3d] text-white flex items-center justify-center hover:bg-[#c1121f] hover:-translate-y-1 transition duration-300 shadow-md"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/share/198T55UJdS/" target="_blank" class="w-10 h-10 rounded-full bg-[#091c3d] text-white flex items-center justify-center hover:bg-[#c1121f] hover:-translate-y-1 transition duration-300 shadow-md"><i class="fa-brands fa-facebook-f"></i></a>
                             <a href="#" class="w-10 h-10 rounded-full bg-[#091c3d] text-white flex items-center justify-center hover:bg-[#c1121f] hover:-translate-y-1 transition duration-300 shadow-md"><i class="fa-brands fa-instagram"></i></a>
                             <a href="#" class="w-10 h-10 rounded-full bg-[#091c3d] text-white flex items-center justify-center hover:bg-[#c1121f] hover:-translate-y-1 transition duration-300 shadow-md"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-[#091c3d] text-white flex items-center justify-center hover:bg-[#c1121f] hover:-translate-y-1 transition duration-300 shadow-md"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="https://tiktok.com/@goshen.center.dou" target="_blank" class="w-10 h-10 rounded-full bg-[#091c3d] text-white flex items-center justify-center hover:bg-[#c1121f] hover:-translate-y-1 transition duration-300 shadow-md"><i class="fa-brands fa-tiktok"></i></a>
+                            <a href="mailto:info.goshenworkskill@gmail.com" class="w-10 h-10 rounded-full bg-[#091c3d] text-white flex items-center justify-center hover:bg-[#c1121f] hover:-translate-y-1 transition duration-300 shadow-md"><i class="fa-solid fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -154,31 +198,26 @@
                     <h3 class="font-serif text-2xl md:text-3xl text-[#091c3d] font-bold mb-2 break-words">Enquire Now</h3>
                     <p class="text-gray-500 text-xs md:text-sm mb-6 md:mb-8 break-words">Fill out this form to book a consultant advising session.</p>
 
-                    <form class="space-y-4 md:space-y-5">
+                    <form method="POST" action="{{ route('contact.submit') }}" class="space-y-4 md:space-y-5">
+                        @csrf
                         <!-- Name -->
                         <div>
-                            <input type="text" placeholder="Full Name *" class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition" required>
+                            <input type="text" name="name" placeholder="Full Name *" class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition" required>
                         </div>
                         
                         <!-- Email -->
                         <div>
-                            <input type="email" placeholder="Email Address *" class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition" required>
+                            <input type="email" name="email" placeholder="Email Address *" class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition" required>
                         </div>
                         
-                        <!-- Mobile with Country Code split -->
-                        <div class="flex gap-2 md:gap-3">
-                            <select class="bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-2 py-3 md:px-3 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition w-20 md:w-28 shrink-0 text-gray-600">
-                                <option value="+237">🇨🇲 +237</option>
-                                <option value="+971">🇦🇪 +971</option>
-                                <option value="+234">🇳🇬 +234</option>
-                                <option value="+44">🇬🇧 +44</option>
-                            </select>
-                            <input type="tel" placeholder="Mobile No *" class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition" required>
+                        <!-- Phone -->
+                        <div>
+                            <input type="tel" name="phone" placeholder="Mobile No *" class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition" required>
                         </div>
                         
                         <!-- Course OR Package Selection -->
                         <div>
-                            <select class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition text-gray-600 break-words" required>
+                            <select name="course" class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition text-gray-600 break-words" required>
                                 <option value="" disabled selected>Choose Package or Course *</option>
                                 
                                 <option value="social-care">Diploma in Social Care</option>
@@ -193,17 +232,27 @@
                             </select>
                         </div>
 
+                        <!-- Campus Selection -->
+                        <div>
+                            <select name="campus" class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition text-gray-600 break-words" required>
+                                <option value="" disabled selected>Select Campus *</option>
+                                <option value="general">General Enquiry</option>
+                                <option value="douala">Douala Main Campus</option>
+                                <option value="limbe">Limbe Campus</option>
+                            </select>
+                        </div>
+
                         <!-- Date Picker -->
                         <div>
                             <div class="relative">
-                                <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Expected Start Date *" class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition text-gray-600" required>
+                                <input type="text" name="start_date" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Expected Start Date *" class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition text-gray-600" required>
                             </div>
                             <p class="text-[9px] md:text-[10px] text-gray-400 mt-1 md:mt-1.5 ml-2">dd-mm-yyyy</p>
                         </div>
 
                         <!-- Message -->
                         <div>
-                            <textarea rows="4" placeholder="Message / Questions *" class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition resize-none" required></textarea>
+                            <textarea name="message" rows="4" placeholder="Message / Questions *" class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-3.5 text-xs md:text-sm focus:outline-none focus:border-[#c1121f] focus:ring-1 focus:ring-[#c1121f] transition resize-none" required></textarea>
                         </div>
 
                         <!-- Submit Button -->
@@ -214,10 +263,11 @@
 
                     <!-- Bottom Social Strip -->
                     <div class="flex justify-end gap-3 mt-4 md:mt-6 pt-4 md:pt-6 border-t border-gray-100">
-                        <a href="#" class="text-[#091c3d] hover:text-[#c1121f] transition text-base md:text-lg"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.facebook.com/share/198T55UJdS/" target="_blank" class="text-[#091c3d] hover:text-[#c1121f] transition text-base md:text-lg"><i class="fa-brands fa-facebook"></i></a>
                         <a href="#" class="text-[#091c3d] hover:text-[#c1121f] transition text-base md:text-lg"><i class="fa-brands fa-instagram"></i></a>
                         <a href="#" class="text-[#091c3d] hover:text-[#c1121f] transition text-base md:text-lg"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="#" class="text-[#091c3d] hover:text-[#c1121f] transition text-base md:text-lg"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://tiktok.com/@goshen.center.dou" target="_blank" class="text-[#091c3d] hover:text-[#c1121f] transition text-base md:text-lg"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="mailto:info.goshenworkskill@gmail.com" class="text-[#091c3d] hover:text-[#c1121f] transition text-base md:text-lg"><i class="fa-solid fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
@@ -230,16 +280,25 @@
         <div class="max-w-[90rem] mx-auto px-4 md:px-6" data-aos="zoom-in">
             <!-- Adjusted height for mobile to prevent scroll trapping -->
             <div class="w-full h-[300px] md:h-[500px] rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] border-2 md:border-4 border-white relative group">
-                <!-- Embedded Google Map of Douala, Cameroon -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127482.684144365!2d9.68065096538466!3d4.048386341235311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1061128be2e1f6c1%3A0x92011c10fa36d1d6!2sDouala%2C%20Cameroon!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" class="w-full h-full border-0 grayscale-[20%] contrast-[1.1] group-hover:grayscale-0 transition duration-700" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <!-- Embedded Google Map of Douala to Limbe -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d159038!2d9.43861167164934!3d4.047923153407743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x1061128be2e1f6c1%3A0x92011c10fa36d1d6!2sDouala%2C%20Cameroon!3m2!1d4.04827!2d9.70428!4m5!1s0x10605e7a5f7d9d4f%3A0x6b7c5a5b5e5f5d5c!2sLimbe%2C%20Cameroon!3m2!1d4.0242!2d9.2149!5e0!3m2!1sen!2sus" class="w-full h-full border-0 grayscale-[20%] contrast-[1.1] group-hover:grayscale-0 transition duration-700" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 
-                <!-- Floating Info Overlay on Map -->
-                <div class="absolute top-4 left-4 md:top-6 md:left-6 bg-white p-4 md:p-5 rounded-xl md:rounded-2xl shadow-xl w-48 md:w-64 border border-gray-100 hidden sm:block">
-                    <div class="flex items-center gap-3 mb-2">
-                        <img src="{{ asset('images/logo.png') }}" onerror="this.src='https://placehold.co/80x30/ffffff/091c3d?text=GWSA'" class="h-6 md:h-8 object-contain" alt="Goshen">
+                <!-- Floating Info Overlays on Map -->
+                <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-xl w-44 md:w-56 border border-gray-100 hidden sm:block">
+                    <div class="flex items-center gap-2 mb-1">
+                        <div class="w-2 h-2 rounded-full bg-[#c1121f] shrink-0"></div>
+                        <span class="font-bold text-[10px] md:text-[11px] text-[#091c3d]">Douala Main Campus</span>
                     </div>
-                    <p class="text-[10px] md:text-[11px] text-gray-500 font-semibold mb-2">Main Campus, Douala - Cameroon</p>
-                    <a href="https://maps.google.com" target="_blank" class="text-[#c1121f] text-[10px] md:text-xs font-bold hover:underline flex items-center gap-1">Get Directions <i class="fa-solid fa-arrow-up-right-from-square text-[8px] md:text-[10px]"></i></a>
+                    <p class="text-[9px] md:text-[10px] text-gray-500 leading-tight mb-1">BB incubator House, Bonaberi</p>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=4.089743,9.66298" target="_blank" class="text-[#c1121f] text-[9px] md:text-[10px] font-bold hover:underline">Get Directions <i class="fa-solid fa-arrow-up-right-from-square text-[7px]"></i></a>
+                </div>
+                <div class="absolute top-4 right-4 md:top-6 md:right-6 bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-xl w-44 md:w-56 border border-gray-100 hidden sm:block">
+                    <div class="flex items-center gap-2 mb-1">
+                        <div class="w-2 h-2 rounded-full bg-[#f5a524] shrink-0"></div>
+                        <span class="font-bold text-[10px] md:text-[11px] text-[#091c3d]">Limbe Campus</span>
+                    </div>
+                    <p class="text-[9px] md:text-[10px] text-gray-500 leading-tight mb-1">Royal Detriot Bldg, by Soccer City</p>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=4.0242,9.2149" target="_blank" class="text-[#c1121f] text-[9px] md:text-[10px] font-bold hover:underline">Get Directions <i class="fa-solid fa-arrow-up-right-from-square text-[7px]"></i></a>
                 </div>
             </div>
         </div>
@@ -426,15 +485,17 @@
 
     <!-- PREMIUM BOTTOM CALL TO ACTION GRID -->
     <section class="py-8 md:py-12 bg-gray-100 border-t border-b border-gray-200">
-        <!-- FIXED: Single column on tiny screens to prevent email text cutoff -->
-        <div class="max-w-[90rem] mx-auto px-4 md:px-6 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8 items-center bg-[#fff7f5] p-6 md:p-10 rounded-2xl" data-aos="fade-up">
-            <div class="text-center sm:text-left text-gray-800">
-                <h3 class="font-serif text-xl md:text-3xl font-bold mb-1 md:mb-2 text-[#091c3d] break-words">Get In Touch:</h3>
-                <p class="text-sm md:text-lg text-[#c1121f] font-bold break-all md:break-words">info&#64;goshenworkskill.com</p>
+        <div class="max-w-[90rem] mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-center bg-[#fff7f5] p-6 md:p-10 rounded-2xl" data-aos="fade-up">
+            <div class="text-center md:text-left text-gray-800">
+                <h3 class="font-serif text-xl md:text-3xl font-bold mb-2 md:mb-3 text-[#091c3d] break-words">Get In Touch:</h3>
+                <div class="space-y-1">
+                    <p class="text-xs md:text-sm text-[#c1121f] font-bold break-all md:break-words">Info&#64;goshenworkskill.com</p>
+                    <p class="text-xs md:text-sm text-[#c1121f] font-bold break-all md:break-words">Admin&#64;goshenworkskill.com</p>
+                </div>
             </div>
-            <div class="text-center sm:text-right">
-                <h3 class="font-serif text-xl md:text-3xl font-bold mb-1 md:mb-2 text-[#091c3d] break-words">Call or WhatsApp:</h3>
-                <p class="text-sm md:text-lg text-[#c1121f] font-bold break-words">+237 678 672 998 / +237 696 681 163</p>
+            <div class="text-center md:text-right">
+                <h3 class="font-serif text-xl md:text-3xl font-bold mb-2 md:mb-3 text-[#091c3d] break-words">Call or WhatsApp:</h3>
+                <p class="text-xs md:text-sm text-[#c1121f] font-bold break-words">+237 678 672 998 / +237 696 681 163</p>
             </div>
         </div>
     </section>

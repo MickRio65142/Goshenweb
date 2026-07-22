@@ -30,6 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->passwordReset()
+            ->profile(\App\Filament\Profile\AdminProfile::class)
 
             // Standard Native Logo
             ->brandLogo(asset('images/logo.png'))

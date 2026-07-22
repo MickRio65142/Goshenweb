@@ -238,21 +238,19 @@
             <!-- Sidebar Inquiry Form WITH ALL 9 COURSES -->
             <div class="bg-[#fff7f5] border border-gray-100 shadow-xl rounded-2xl md:rounded-3xl p-5 md:p-8" id="sidebar-form">
                 <h3 class="font-serif text-xl md:text-2xl text-[#091c3d] font-bold mb-4 md:mb-6 break-words">Enquire Now</h3>
-                <form class="space-y-3 md:space-y-4">
+                <form method="POST" action="{{ route('enquiry.submit') }}" class="space-y-3 md:space-y-4">
+                    @csrf
                     <div>
-                        <input type="text" placeholder="Name" class="w-full bg-white border border-gray-200 rounded-lg md:rounded-xl px-3 py-2.5 md:px-4 md:py-3.5 text-[11px] md:text-xs focus:outline-none focus:border-[#091c3d]" required>
+                        <input type="text" name="name" placeholder="Name" class="w-full bg-white border border-gray-200 rounded-lg md:rounded-xl px-3 py-2.5 md:px-4 md:py-3.5 text-[11px] md:text-xs focus:outline-none focus:border-[#091c3d]" required>
                     </div>
                     <div>
-                        <input type="email" placeholder="Email" class="w-full bg-white border border-gray-200 rounded-lg md:rounded-xl px-3 py-2.5 md:px-4 md:py-3.5 text-[11px] md:text-xs focus:outline-none focus:border-[#091c3d]" required>
-                    </div>
-                    <div class="flex gap-2">
-                        <select class="bg-white border border-gray-200 rounded-lg md:rounded-xl px-2 py-2.5 md:py-3 text-[11px] md:text-xs focus:outline-none focus:border-[#091c3d] shrink-0">
-                            <option value="+237">+237</option>
-                        </select>
-                        <input type="text" placeholder="Mobile No" class="w-full bg-white border border-gray-200 rounded-lg md:rounded-xl px-3 py-2.5 md:px-4 md:py-3 text-[11px] md:text-xs focus:outline-none focus:border-[#091c3d]" required>
+                        <input type="email" name="email" placeholder="Email" class="w-full bg-white border border-gray-200 rounded-lg md:rounded-xl px-3 py-2.5 md:px-4 md:py-3.5 text-[11px] md:text-xs focus:outline-none focus:border-[#091c3d]" required>
                     </div>
                     <div>
-                        <select class="w-full bg-white border border-gray-200 rounded-lg md:rounded-xl px-3 py-2.5 md:px-4 md:py-3.5 text-[10px] md:text-xs focus:outline-none focus:border-[#091c3d] break-words">
+                        <input type="tel" name="phone" placeholder="Mobile No" class="w-full bg-white border border-gray-200 rounded-lg md:rounded-xl px-3 py-2.5 md:px-4 md:py-3 text-[11px] md:text-xs focus:outline-none focus:border-[#091c3d]" required>
+                    </div>
+                    <div>
+                        <select name="course" class="w-full bg-white border border-gray-200 rounded-lg md:rounded-xl px-3 py-2.5 md:px-4 md:py-3.5 text-[10px] md:text-xs focus:outline-none focus:border-[#091c3d] break-words">
                             <option>Diploma in Social Care</option>
                             <option>Diploma in Nursing Aid</option>
                             <option>Certificate in Health and Safety</option>
@@ -265,10 +263,17 @@
                         </select>
                     </div>
                     <div>
-                        <input type="date" class="w-full bg-white border border-gray-200 rounded-lg md:rounded-xl px-3 py-2.5 md:px-4 md:py-3.5 text-[11px] md:text-xs focus:outline-none focus:border-[#091c3d]" required>
+                        <select name="campus" class="w-full bg-white border border-gray-200 rounded-lg md:rounded-xl px-3 py-2.5 md:px-4 md:py-3.5 text-[10px] md:text-xs focus:outline-none focus:border-[#091c3d] break-words" required>
+                            <option value="" disabled selected>Campus *</option>
+                            <option value="douala">Douala Main Campus</option>
+                            <option value="limbe">Limbe Campus</option>
+                        </select>
                     </div>
                     <div>
-                        <textarea rows="3" placeholder="Message" class="w-full bg-white border border-gray-200 rounded-lg md:rounded-xl px-3 py-2.5 md:px-4 md:py-3 text-[11px] md:text-xs focus:outline-none focus:border-[#091c3d]" required></textarea>
+                        <input type="date" name="start_date" class="w-full bg-white border border-gray-200 rounded-lg md:rounded-xl px-3 py-2.5 md:px-4 md:py-3.5 text-[11px] md:text-xs focus:outline-none focus:border-[#091c3d]" required>
+                    </div>
+                    <div>
+                        <textarea name="message" rows="3" placeholder="Message" class="w-full bg-white border border-gray-200 rounded-lg md:rounded-xl px-3 py-2.5 md:px-4 md:py-3 text-[11px] md:text-xs focus:outline-none focus:border-[#091c3d]"></textarea>
                     </div>
                     <button type="submit" class="w-full bg-[#091c3d] text-white py-3 md:py-3.5 rounded-lg md:rounded-xl font-bold text-[11px] md:text-xs uppercase tracking-wider hover:bg-[#c1121f] transition">Submit</button>
                 </form>
@@ -278,10 +283,11 @@
             <div class="text-center p-4 md:p-6 bg-gray-50 rounded-xl md:rounded-2xl border border-gray-100">
                 <h4 class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-500 mb-3 md:mb-4">Follow Us On:</h4>
                 <div class="flex justify-center gap-4 text-[#091c3d] text-base md:text-lg">
-                    <a href="#" class="hover:text-[#c1121f] transition"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/share/198T55UJdS/" target="_blank" class="hover:text-[#c1121f] transition"><i class="fa-brands fa-facebook"></i></a>
                     <a href="#" class="hover:text-[#c1121f] transition"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#" class="hover:text-[#c1121f] transition"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#" class="hover:text-[#c1121f] transition"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://tiktok.com/@goshen.center.dou" target="_blank" class="hover:text-[#c1121f] transition"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="mailto:info.goshenworkskill@gmail.com" class="hover:text-[#c1121f] transition"><i class="fa-solid fa-envelope"></i></a>
                 </div>
             </div>
 
@@ -535,7 +541,7 @@
             </div>
             <div class="text-center sm:text-right">
                 <h3 class="font-serif text-xl md:text-3xl font-bold mb-1 md:mb-2 text-[#091c3d] break-words">Call or WhatsApp:</h3>
-                <p class="text-sm md:text-lg text-[#c1121f] font-bold break-words">+237 679 20 22 65</p>
+                <p class="text-sm md:text-lg text-[#c1121f] font-bold break-words">+237 678 672 998 / +237 696 681 163</p>
             </div>
         </div>
     </section>

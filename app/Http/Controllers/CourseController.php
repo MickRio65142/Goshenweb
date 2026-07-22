@@ -346,7 +346,7 @@ class CourseController extends Controller
             'silver' => [
                 'title' => 'Goshen Silver Package',
                 'subtitle' => 'Hospitality & Tourism, Airline Ticketing, Customer Service & ICT',
-                'price' => '200,000 FCFA',
+                'price' => '360,000 FCFA',
                 'duration' => '3 Months',
                 'hero_image' => 'images/slide-hospitality.jpg',
                 'description' => 'The Goshen Silver Package prepares you for the global service industry by bundling three high-demand programs: Hospitality & Tourism, Airline Ticketing & Reservation, and Customer Service & Computer Operations. Whether your goal is a hotel front desk, a travel agency, or a corporate office, this package delivers.',
@@ -367,7 +367,7 @@ class CourseController extends Controller
             'gold' => [
                 'title' => 'Goshen Gold Package',
                 'subtitle' => 'Pick 6+ Courses — One Flat Price',
-                'price' => '200,000 FCFA',
+                'price' => '460,000 FCFA',
                 'duration' => 'Flexible',
                 'hero_image' => 'images/hero-home-packages.jpg',
                 'description' => 'The Goshen Gold Package is our most flexible and comprehensive offer. Choose 6 or more courses from any category — Healthcare, Safety, Hospitality, Travel & Aviation — and pay a single flat fee. Build your own curriculum and study at your own pace.',

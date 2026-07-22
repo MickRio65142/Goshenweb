@@ -325,8 +325,8 @@
             <p x-show="!isDeleting" x-transition.opacity.duration.500ms class="text-gray-200 text-sm md:text-base max-w-xl leading-relaxed mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]" x-text="slides[activeSlide].desc"></p>
             
             <div class="flex gap-4">
-                <a href="/courses" class="bg-[#c1121f] hover:bg-[#091c3d] text-white px-5 md:px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider transition duration-300 shadow-lg">Enroll Now</a>
-                <a href="/courses" class="bg-white/10 hover:bg-white hover:text-[#091c3d] text-white px-5 md:px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider transition duration-300 shadow-lg border border-white/30">View 9 Packages</a>
+                <a href="/packages" class="bg-[#c1121f] hover:bg-[#091c3d] text-white px-5 md:px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider transition duration-300 shadow-lg">Enroll Now</a>
+                <a href="/courses" class="bg-white/10 hover:bg-white hover:text-[#091c3d] text-white px-5 md:px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider transition duration-300 shadow-lg border border-white/30">View 9 Courses</a>
             </div>
         </div>
     </section>

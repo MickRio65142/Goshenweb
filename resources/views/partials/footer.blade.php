@@ -15,8 +15,9 @@
                 <span class="font-serif text-lg md:text-xl font-bold text-white mb-3 md:mb-4 block break-words">Goshen Work Skill<br><span class="text-[#c1121f] font-sans font-light text-xs md:text-sm">ASSOCIATION</span></span>
                 <p class="mb-4 text-[11px] md:text-xs leading-relaxed max-w-sm break-words text-left">Empowering passionate individuals globally with premium vocational curricula in healthcare, hospitality, aviation, and safety.</p>
                 <div class="flex gap-3 justify-start">
-                    <a href="#" class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#c1121f] hover:text-white transition"><i class="fa-brands fa-facebook-f text-[10px] md:text-xs"></i></a>
-                    <a href="#" class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#c1121f] hover:text-white transition"><i class="fa-brands fa-whatsapp text-[10px] md:text-xs"></i></a>
+                    <a href="https://www.facebook.com/share/198T55UJdS/" target="_blank" class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#c1121f] hover:text-white transition"><i class="fa-brands fa-facebook-f text-[10px] md:text-xs"></i></a>
+                    <a href="https://tiktok.com/@goshen.center.dou" target="_blank" class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#c1121f] hover:text-white transition"><i class="fa-brands fa-tiktok text-[10px] md:text-xs"></i></a>
+                    <a href="mailto:info.goshenworkskill@gmail.com" class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#c1121f] hover:text-white transition"><i class="fa-solid fa-envelope text-[10px] md:text-xs"></i></a>
                     <a href="#" class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#c1121f] hover:text-white transition"><i class="fa-brands fa-linkedin-in text-[10px] md:text-xs"></i></a>
                 </div>
             </div>
@@ -82,9 +83,13 @@
         <!-- Bottom Copyright Bar (Also aligned to the left on mobile) -->
         <div class="max-w-[1250px] mx-auto px-4 md:px-6 pt-5 md:pt-6 border-t border-white/5 text-[9px] md:text-[11px] flex flex-col md:flex-row justify-between items-start md:items-center gap-3 md:gap-4 text-left">
             <p class="break-words">&copy; {{ date('Y') }} Goshen Work Skill Association. All rights reserved.</p>
-            <div class="flex flex-wrap justify-start md:justify-end gap-3 md:gap-4">
-                <a href="/admin/login" class="hover:text-white transition break-words">Admin Portal</a>
-                <a href="mailto:info@goshenworkskill.com" class="hover:text-white transition break-words">info@goshenworkskill.com</a>
+            <div class="flex flex-wrap justify-start md:justify-end gap-x-3 gap-y-1 md:gap-x-4">
+                <a href="/admin/login" class="hover:text-white transition break-words text-[9px] md:text-[11px]">Admin Portal</a>
+                <a href="mailto:Info@goshenworkskill.com" class="hover:text-white transition break-words text-[9px] md:text-[11px]">Info@goshenworkskill.com</a>
+                <a href="mailto:Admin@goshenworkskill.com" class="hover:text-white transition break-words text-[9px] md:text-[11px]">Admin@goshenworkskill.com</a>
+                <a href="mailto:Douala@goshenworkskill.com" class="hover:text-white transition break-words text-[9px] md:text-[11px]">Douala@goshenworkskill.com</a>
+                <a href="mailto:Limbe@goshenworkskill.com" class="hover:text-white transition break-words text-[9px] md:text-[11px]">Limbe@goshenworkskill.com</a>
+                <a href="mailto:Jobsabroad@goshenworkskill.com" class="hover:text-white transition break-words text-[9px] md:text-[11px]">Jobsabroad@goshenworkskill.com</a>
             </div>
         </div>
     </footer>

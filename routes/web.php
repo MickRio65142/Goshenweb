@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\DirectRegistrationController;
+use App\Http\Controllers\ContactController;
 use App\Models\Event;
 use App\Models\Certificate;
 use App\Http\Controllers\SocialiteController;
@@ -26,6 +27,8 @@ Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.
 Route::get('/gallery', function () { return view('gallery'); });
 
 Route::get('/contact-us', function () { return view('contact'); });
+Route::post('/contact-us', [ContactController::class, 'submitContact'])->name('contact.submit');
+Route::post('/enquiry', [ContactController::class, 'submitEnquiry'])->name('enquiry.submit');
 
 Route::get('/packages', [CourseController::class, 'packagesIndex'])->name('packages.index');
 
@@ -72,6 +75,10 @@ Route::get('/faqs', function () { return view('faqs'); });
 // Direct Registration Routes (no exam required)
 Route::get('/register/gold', [DirectRegistrationController::class, 'showGoldForm'])->name('register.gold');
 Route::post('/register/gold', [DirectRegistrationController::class, 'submitGoldRegistration'])->name('register.gold.submit');
+Route::get('/register/health', [DirectRegistrationController::class, 'showHealthForm'])->name('register.health');
+Route::post('/register/health', [DirectRegistrationController::class, 'submitHealthRegistration'])->name('register.health.submit');
+Route::get('/register/silver', [DirectRegistrationController::class, 'showSilverForm'])->name('register.silver');
+Route::post('/register/silver', [DirectRegistrationController::class, 'submitSilverRegistration'])->name('register.silver.submit');
 Route::get('/register/{slug}', [DirectRegistrationController::class, 'showForm'])->name('register.show');
 Route::post('/register/{slug}', [DirectRegistrationController::class, 'submitRegistration'])->name('register.submit');
 
@@ -124,10 +131,47 @@ Route::get('/admin/notifications/poll', function () {
     ]);
 })->middleware('auth');
 
+Route::get('/sitemap.xml', function () {
+    $urls = [
+        ['loc' => '/', 'priority' => '1.0'],
+        ['loc' => '/about-us', 'priority' => '0.9'],
+        ['loc' => '/courses', 'priority' => '0.9'],
+        ['loc' => '/packages', 'priority' => '0.9'],
+        ['loc' => '/gallery', 'priority' => '0.7'],
+        ['loc' => '/contact-us', 'priority' => '0.8'],
+        ['loc' => '/pricing', 'priority' => '0.8'],
+        ['loc' => '/certifications', 'priority' => '0.7'],
+        ['loc' => '/events', 'priority' => '0.7'],
+        ['loc' => '/faqs', 'priority' => '0.6'],
+        ['loc' => '/privacy', 'priority' => '0.4'],
+        ['loc' => '/terms', 'priority' => '0.4'],
+        ['loc' => '/cookies', 'priority' => '0.4'],
+        ['loc' => '/refunds', 'priority' => '0.4'],
+    ];
+
+    $courseSlugs = ['social-care', 'nursing-aid', 'health-safety', 'first-aid-cpr', 'hospitality-tourism', 'customer-service', 'travel-business', 'airline-ticketing', 'personal-support-worker'];
+    foreach ($courseSlugs as $slug) {
+        $urls[] = ['loc' => "/courses/$slug", 'priority' => '0.8'];
+    }
+
+    $packageSlugs = ['healthcare', 'silver', 'gold'];
+    foreach ($packageSlugs as $slug) {
+        $urls[] = ['loc' => "/packages/$slug", 'priority' => '0.8'];
+    }
+
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+    foreach ($urls as $url) {
+        $xml .= '  <url>' . "\n";
+        $xml .= '    <loc>' . url($url['loc']) . '</loc>' . "\n";
+        $xml .= '    <priority>' . $url['priority'] . '</priority>' . "\n";
+        $xml .= '  </url>' . "\n";
+    }
+    $xml .= '</urlset>';
+
+    return response($xml, 200)->header('Content-Type', 'text/xml');
+});
+
 Route::fallback(function () {
-    return '<div style="text-align:center; padding:50px; font-family:sans-serif;">
-                <h1>Page Coming Soon</h1>
-                <p>We are still building this section of the website.</p>
-                <a href="/" style="color:blue;">Go Back Home</a>
-            </div>';
+    return response()->view('errors.404', [], 404);
 });

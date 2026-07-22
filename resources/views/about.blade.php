@@ -19,19 +19,7 @@
     <!-- Alpine JS -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <!-- Kadence Global Stylesheets -->
-    <link rel='stylesheet' id='kadence-global-css' href='https://www.cna-traininginstitute.com/wp-content/themes/kadence/assets/css/global.min.css?ver=1.5.0' media='all' />
-    <link rel='stylesheet' id='kadence-fonts-gfonts-css' href='https://www.cna-traininginstitute.com/wp-content/fonts/093539fd79b62502b27b213ce221c1ce.css?ver=1.5.0' media='all' />
-    
     <style>
-        html, body, #wrapper, .site { overflow-x: clip !important; overflow-y: visible !important; }
-
-        .site-header { background: #ffffff !important; }
-        .site-top-header-wrap { background: #f7f5f2 !important; }
-        .main-navigation .primary-menu-container > ul > li.menu-item > a { font-family: 'Poppins', sans-serif !important; }
-        .entry-content p { font-family: 'Telex', sans-serif !important; }
-        h1, h2, h3, h4, h5, h6 { font-family: 'Rubik', sans-serif !important; }
-
         @keyframes scroll-reviews-ltr {
             0% { transform: translateX(-50%); }
             100% { transform: translateX(0); }
@@ -73,8 +61,8 @@
     </style>
 </head>
 
-<body class="page-template-default page page-id-12232 wp-custom-logo footer-on-bottom social-brand-colors content-width-fullwidth content-style-unboxed content-vertical-padding-hide bg-[#fcfcfc]">
-<div id="wrapper" class="site wp-site-blocks">
+<body class="bg-[#fcfcfc]">
+<div>
     
     @include('partials.header')
 

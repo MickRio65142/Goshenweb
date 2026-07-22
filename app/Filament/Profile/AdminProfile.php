@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Filament\Student\Pages;
+namespace App\Filament\Profile;
 
 use Filament\Auth\Pages\EditProfile as BaseEditProfile;
-use Filament\Forms\Components\TextInput;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rules\Password;
 use Livewire\WithFileUploads;
 
-class EditProfile extends BaseEditProfile
+class AdminProfile extends BaseEditProfile
 {
     use WithFileUploads;
 
     protected static string $layout = 'filament-panels::components.layout.index';
 
-    protected string $view = 'filament.student.profile';
+    protected string $view = 'filament.admin.profile';
 
     public $avatar_upload;
 

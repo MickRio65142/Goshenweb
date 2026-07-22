@@ -17,12 +17,13 @@
             <span class="text-gray-400 font-medium hidden sm:inline">Main Campus, Cameroon</span>
         </div>
         <div class="flex items-center gap-4 sm:gap-6 font-semibold shrink-0">
-            <span class="flex items-center gap-2 text-gray-600"><i class="fa-solid fa-envelope text-[#c1121f]"></i> info@goshenworkskill.com</span>
+            <a href="mailto:info@goshenworkskill.com" class="flex items-center gap-2 text-gray-600 hover:text-[#c1121f] transition"><i class="fa-solid fa-envelope text-[#c1121f]"></i> info@goshenworkskill.com</a>
             <div class="flex items-center gap-2.5 border-l border-gray-200 pl-3 text-gray-500 shrink-0">
-                <a href="#" class="hover:text-[#c1121f] transition"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.facebook.com/share/198T55UJdS/" target="_blank" class="hover:text-[#c1121f] transition"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#" class="hover:text-[#c1121f] transition"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#" class="hover:text-[#c1121f] transition"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#" class="hover:text-[#c1121f] transition"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://tiktok.com/@goshen.center.dou" target="_blank" class="hover:text-[#c1121f] transition"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="mailto:info.goshenworkskill@gmail.com" class="hover:text-[#c1121f] transition"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
     </div>

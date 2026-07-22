@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Register - Goshen Gold Package | Goshen Work Skill Association</title>
+    <title>Register - Goshen Healthcare Package | Goshen Work Skill Association</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,8 +17,8 @@
 
     <section class="relative py-12 md:py-16 bg-gradient-to-r from-[#091c3d] to-[#0f172a] text-white overflow-hidden">
         <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
-            <span class="bg-[#c1121f] text-[10px] md:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3 inline-block">Gold Package</span>
-            <h1 class="font-serif text-2xl md:text-4xl font-bold mb-2">Goshen Gold Package</h1>
+            <span class="bg-[#c1121f] text-[10px] md:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3 inline-block">Healthcare Package</span>
+            <h1 class="font-serif text-2xl md:text-4xl font-bold mb-2">Goshen Healthcare Package</h1>
             <p class="text-gray-300 text-sm">You selected <strong>{{ count($selectedCourses) }} courses</strong>. Complete the form to activate your multi-course enrollment.</p>
         </div>
     </section>
@@ -34,7 +34,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('register.gold.submit') }}">
+                    <form method="POST" action="{{ route('register.health.submit') }}">
                         @csrf
                         <input type="hidden" name="selected_courses" value="{{ implode(',', $selectedSlugs) }}">
 
@@ -213,7 +213,7 @@
                     <div class="border-t border-gray-100 pt-4 space-y-3 text-xs text-gray-600">
                         <div class="flex justify-between">
                             <span>Package</span>
-                            <span class="font-bold text-[#091c3d] text-right">Goshen Gold</span>
+                            <span class="font-bold text-[#091c3d] text-right">Goshen Healthcare</span>
                         </div>
                         <div class="flex justify-between">
                             <span>Courses</span>
@@ -221,7 +221,7 @@
                         </div>
                         <div class="flex justify-between">
                             <span>Price</span>
-                            <span class="font-bold text-[#091c3d]">460,000 FCFA</span>
+                            <span class="font-bold text-[#091c3d]">260,000 FCFA</span>
                         </div>
                     </div>
 

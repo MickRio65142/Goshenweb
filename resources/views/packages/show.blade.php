@@ -46,9 +46,14 @@
             <div class="mt-8">
                 <a href="#build" class="inline-block bg-[#f5a524] text-[#091c3d] px-8 py-4 rounded-xl font-black text-sm uppercase tracking-wider hover:bg-white hover:text-[#091c3d] transition-all shadow-xl pulse">Build Your Bundle Now &darr;</a>
             </div>
-            @else
+            @elseif($slug === 'healthcare')
             <div class="mt-6 md:mt-8 flex flex-wrap gap-3 md:gap-4">
-                <a href="/register/{{ $slug }}" class="inline-block bg-[#c1121f] text-white px-6 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-[#c1121f] transition-all shadow-xl">Enroll Now</a>
+                <a href="/register/health" class="inline-block bg-[#c1121f] text-white px-6 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-[#c1121f] transition-all shadow-xl">Take Package</a>
+                <a href="/contact-us" class="inline-block border-2 border-white/40 text-white px-6 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-[#091c3d] transition">Request Info</a>
+            </div>
+            @elseif($slug === 'silver')
+            <div class="mt-6 md:mt-8 flex flex-wrap gap-3 md:gap-4">
+                <a href="/register/silver" class="inline-block bg-[#c1121f] text-white px-6 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-[#c1121f] transition-all shadow-xl">Take Package</a>
                 <a href="/contact-us" class="inline-block border-2 border-white/40 text-white px-6 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-[#091c3d] transition">Request Info</a>
             </div>
             @endif
@@ -247,8 +252,10 @@
             <div class="flex flex-wrap justify-center gap-3 md:gap-6">
                 @if($slug === 'gold')
                 <a href="#build" class="inline-block bg-[#f5a524] text-[#091c3d] px-8 py-3.5 md:px-10 md:py-4 rounded-xl font-black text-xs md:text-sm uppercase tracking-wider hover:bg-white transition-all shadow-xl">Build Your Bundle</a>
-                @else
-                <a href="/register/{{ $slug }}" class="inline-block bg-[#c1121f] text-white px-8 py-3.5 md:px-10 md:py-4 rounded-xl font-black text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-[#c1121f] transition-all shadow-xl">Enroll Now</a>
+                @elseif($slug === 'healthcare')
+                <a href="/register/health" class="inline-block bg-[#c1121f] text-white px-8 py-3.5 md:px-10 md:py-4 rounded-xl font-black text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-[#c1121f] transition-all shadow-xl">Take Package</a>
+                @elseif($slug === 'silver')
+                <a href="/register/silver" class="inline-block bg-[#c1121f] text-white px-8 py-3.5 md:px-10 md:py-4 rounded-xl font-black text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-[#c1121f] transition-all shadow-xl">Take Package</a>
                 @endif
                 <a href="/contact-us" class="inline-block border-2 border-white/30 text-white px-8 py-3.5 md:px-10 md:py-4 rounded-xl font-bold text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-[#091c3d] transition">Contact Us</a>
             </div>
