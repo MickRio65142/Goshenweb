@@ -12,6 +12,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Storage;
 
 class BulkImportQuestions extends Page
 {
+    use InteractsWithForms;
     protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-document-arrow-up';
 
     protected static ?string $navigationLabel = 'Bulk Import';
