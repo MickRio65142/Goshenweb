@@ -66,6 +66,11 @@ class UserForm
                     ]),
                 TextInput::make('heard_about_us')
                     ->label('How did you hear about us?'),
+                Select::make('campus')
+                    ->options([
+                        'douala' => 'Douala Main Campus',
+                        'limbe' => 'Limbe Campus',
+                    ]),
             ]);
     }
 }

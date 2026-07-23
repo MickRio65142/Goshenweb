@@ -96,13 +96,14 @@ class DirectRegistrationController extends Controller
             'phone_number' => $validated['phone'],
             'role' => 'student',
             'date_of_birth' => $validated['date_of_birth'],
-            'gender' => $validated['gender'],
+            'gender' => Str::lower($validated['gender']),
             'nationality' => $validated['nationality'],
             'address' => $validated['address'] ?? null,
             'emergency_contact_name' => $validated['emergency_contact_name'] ?? null,
             'emergency_contact_phone' => $validated['emergency_contact_phone'] ?? null,
             'education_level' => $validated['education_level'] ?? null,
             'heard_about_us' => $validated['heard_about_us'] ?? null,
+            'campus' => $validated['campus'],
         ]);
 
         if ($courseId) {
@@ -111,6 +112,7 @@ class DirectRegistrationController extends Controller
                 'course_id' => $courseId,
                 'status' => 'pending',
                 'payment_status' => 'unpaid',
+                'progress_percentage' => 0,
             ]);
         }
 
@@ -215,13 +217,14 @@ class DirectRegistrationController extends Controller
             'phone_number' => $validated['phone'],
             'role' => 'student',
             'date_of_birth' => $validated['date_of_birth'],
-            'gender' => $validated['gender'],
+            'gender' => Str::lower($validated['gender']),
             'nationality' => $validated['nationality'],
             'address' => $validated['address'] ?? null,
             'emergency_contact_name' => $validated['emergency_contact_name'] ?? null,
             'emergency_contact_phone' => $validated['emergency_contact_phone'] ?? null,
             'education_level' => $validated['education_level'] ?? null,
             'heard_about_us' => $validated['heard_about_us'] ?? null,
+            'campus' => $validated['campus'],
         ]);
 
         $allCourses = (new CourseController)->getCourses();
@@ -234,6 +237,7 @@ class DirectRegistrationController extends Controller
                     'course_id' => $courseRecord->id,
                     'status' => 'pending',
                     'payment_status' => 'unpaid',
+                    'progress_percentage' => 0,
                 ]);
             }
         }
@@ -340,13 +344,14 @@ class DirectRegistrationController extends Controller
             'phone_number' => $validated['phone'],
             'role' => 'student',
             'date_of_birth' => $validated['date_of_birth'],
-            'gender' => $validated['gender'],
+            'gender' => Str::lower($validated['gender']),
             'nationality' => $validated['nationality'],
             'address' => $validated['address'] ?? null,
             'emergency_contact_name' => $validated['emergency_contact_name'] ?? null,
             'emergency_contact_phone' => $validated['emergency_contact_phone'] ?? null,
             'education_level' => $validated['education_level'] ?? null,
             'heard_about_us' => $validated['heard_about_us'] ?? null,
+            'campus' => $validated['campus'],
         ]);
 
         $allCourses = (new CourseController)->getCourses();
@@ -359,6 +364,7 @@ class DirectRegistrationController extends Controller
                     'course_id' => $courseRecord->id,
                     'status' => 'pending',
                     'payment_status' => 'unpaid',
+                    'progress_percentage' => 0,
                 ]);
             }
         }
@@ -455,8 +461,8 @@ class DirectRegistrationController extends Controller
             }
         }
 
-        if (count($validSlugs) < 1) {
-            return back()->with('error', 'Invalid course selection.');
+        if (count($validSlugs) < 6) {
+            return back()->with('error', 'Please select at least 6 courses for the Gold package.');
         }
 
         $validated = $request->validate([
@@ -483,13 +489,14 @@ class DirectRegistrationController extends Controller
             'phone_number' => $validated['phone'],
             'role' => 'student',
             'date_of_birth' => $validated['date_of_birth'],
-            'gender' => $validated['gender'],
+            'gender' => Str::lower($validated['gender']),
             'nationality' => $validated['nationality'],
             'address' => $validated['address'] ?? null,
             'emergency_contact_name' => $validated['emergency_contact_name'] ?? null,
             'emergency_contact_phone' => $validated['emergency_contact_phone'] ?? null,
             'education_level' => $validated['education_level'] ?? null,
             'heard_about_us' => $validated['heard_about_us'] ?? null,
+            'campus' => $validated['campus'],
         ]);
 
         foreach ($validSlugs as $slug) {
@@ -500,6 +507,7 @@ class DirectRegistrationController extends Controller
                     'course_id' => $courseRecord->id,
                     'status' => 'pending',
                     'payment_status' => 'unpaid',
+                    'progress_percentage' => 0,
                 ]);
             }
         }

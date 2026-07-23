@@ -30,6 +30,7 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
         'emergency_contact_phone',
         'education_level',
         'heard_about_us',
+        'campus',
         'email_verified_at',
         'provider',
         'provider_id',

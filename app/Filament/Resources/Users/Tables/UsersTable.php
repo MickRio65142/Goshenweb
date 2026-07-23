@@ -33,6 +33,9 @@ class UsersTable
                         default => 'gray',
                     }),
                 TextColumn::make('phone_number'),
+                TextColumn::make('campus')
+                    ->label('Campus')
+                    ->formatStateUsing(fn ($state) => $state ? ucfirst($state) . ' Campus' : '—'),
                 TextColumn::make('date_of_birth')
                     ->label('DOB')
                     ->date(),

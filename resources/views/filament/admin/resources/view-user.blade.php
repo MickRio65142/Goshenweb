@@ -59,6 +59,9 @@
                             <span><i class="fas fa-envelope"></i> {{ $user->email }}</span>
                             <span><i class="fas fa-phone"></i> {{ $user->phone_number ?? '—' }}</span>
                             <span><i class="fas fa-calendar-check"></i> Joined {{ $user->created_at->format('M d, Y') }}</span>
+                            @if($user->campus)
+                                <span><i class="fas fa-map-marker-alt"></i> {{ ucfirst($user->campus) }} Campus</span>
+                            @endif
                         </p>
                     </div>
                 </div>
@@ -108,6 +111,10 @@
                             <div class="vp-field">
                                 <p class="vp-field-label">How did they hear about us?</p>
                                 <p class="vp-field-value {{ $user->heard_about_us ? '' : 'empty' }}">{{ $user->heard_about_us ?? 'Not provided' }}</p>
+                            </div>
+                            <div class="vp-field">
+                                <p class="vp-field-label">Campus</p>
+                                <p class="vp-field-value {{ $user->campus ? '' : 'empty' }}">{{ $user->campus ? ucfirst($user->campus) . ' Campus' : 'Not provided' }}</p>
                             </div>
                         </div>
                     </div>
