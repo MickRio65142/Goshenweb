@@ -8,6 +8,10 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use App\Filament\Student\Pages\StudentDashboard;
 use App\Filament\Student\Pages\EditProfile;
+use App\Filament\Student\Resources\Exams\Pages\ManageExams;
+use Filament\Navigation\NavigationBuilder;
+use Filament\Navigation\NavigationGroup;
+use Filament\Navigation\NavigationItem;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -34,7 +38,7 @@ class StudentPanelProvider extends PanelProvider
             ->brandLogo(asset('images/logo.png'))
             ->brandLogoHeight('2.75rem')
             ->brandName('Goshen Work Skill Association')
-            ->favicon(asset('favicon.ico'))
+            ->favicon(asset('images/logo.png'))
             
             ->colors([
                 'primary' => '#091c3d',
@@ -60,6 +64,14 @@ class StudentPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Student/Pages'), for: 'App\\Filament\\Student\\Pages')
             ->pages([
                 StudentDashboard::class,
+            ])
+            ->navigationItems([
+                NavigationItem::make('Take Exam')
+                    ->icon('heroicon-o-pencil-square')
+                    ->group('Academics')
+                    ->sort(3)
+                    ->url(fn () => url('/student/exams'))
+                    ->isActiveWhen(fn () => request()->is('student/exams*')),
             ])
             ->widgets([
             ])
