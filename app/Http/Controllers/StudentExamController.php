@@ -9,6 +9,7 @@ use App\Models\Enrollment;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class StudentExamController extends Controller
 {
@@ -114,6 +115,9 @@ class StudentExamController extends Controller
             'completed_at' => now(),
         ]);
 
+        $admins = \App\Models\User::where('role', 'admin')->get();
+        Notification::send($admins, new \App\Notifications\ExamSubmitted($attempt));
+
         return redirect()->route('student.exam.result', ['attemptId' => $attempt->id]);
     }
 
@@ -143,6 +147,9 @@ class StudentExamController extends Controller
             'passed' => false,
             'completed_at' => now(),
         ]);
+
+        $admins = \App\Models\User::where('role', 'admin')->get();
+        Notification::send($admins, new \App\Notifications\ExamSubmitted($attempt));
 
         return redirect()->route('student.exam.result', ['attemptId' => $attempt->id]);
     }

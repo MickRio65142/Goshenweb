@@ -15,6 +15,6 @@ class EditClassEvent extends EditRecord
     {
         $this->record->refresh();
         $students = \App\Models\User::whereHas('enrolledCourses', fn($q) => $q->where('course_id', $this->record->course_id))->get();
-        \Illuminate\Support\Facades\Notification::send($students, new \App\Notifications\LiveClassScheduled($this->record));
+        \Illuminate\Support\Facades\Notification::send($students, new \App\Notifications\LiveClassScheduled($this->record, 'updated'));
     }
 }

@@ -69,6 +69,12 @@ Reference material (short answer / scenario):
 > Answer text')
                     ->rows(10)
                     ->columnSpanFull(),
+                Toggle::make('replace_questions')
+                    ->label('Replace existing questions')
+                    ->helperText('Check this to delete all existing questions and replace with bulk import above')
+                    ->default(false)
+                    ->visible(fn($get) => !empty($get('bulk_import')))
+                    ->columnSpanFull(),
                 Textarea::make('reference_material')
                     ->label('Reference Material (Short Answer / Scenario)')
                     ->helperText('Paste reference questions and answers shown after exam submission.')

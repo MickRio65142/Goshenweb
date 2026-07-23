@@ -10,7 +10,7 @@ class CertificateIssued extends Notification
 {
     use Queueable;
 
-    public function __construct(public Certificate $certificate) {}
+    public function __construct(public Certificate $certificate, public string $type = 'created') {}
 
     public function via(object $notifiable): array
     {
@@ -19,9 +19,12 @@ class CertificateIssued extends Notification
 
     public function toArray(object $notifiable): array
     {
+        $label = $this->type === 'updated' ? 'Updated' : 'Issued';
         return [
-            'title' => 'Certificate Issued',
-            'body' => 'Your certificate has been issued and is now available.',
+            'title' => 'Certificate ' . $label,
+            'body' => $this->type === 'updated'
+                ? 'Your certificate has been updated.'
+                : 'A new certificate has been issued and is now available.',
             'url' => url('/student/certificates'),
         ];
     }

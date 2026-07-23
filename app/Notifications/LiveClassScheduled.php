@@ -10,7 +10,7 @@ class LiveClassScheduled extends Notification
 {
     use Queueable;
 
-    public function __construct(public LiveClass $liveClass) {}
+    public function __construct(public LiveClass $liveClass, public string $type = 'created') {}
 
     public function via(object $notifiable): array
     {
@@ -19,8 +19,9 @@ class LiveClassScheduled extends Notification
 
     public function toArray(object $notifiable): array
     {
+        $label = $this->type === 'updated' ? 'Updated' : 'Scheduled';
         return [
-            'title' => 'Live Class Scheduled',
+            'title' => 'Live Class ' . $label,
             'body' => ($this->liveClass->course->title ?? 'Course') . ' | ' . $this->liveClass->scheduled_at->format('M d, Y g:i A') . ' | ' . $this->liveClass->platform,
             'url' => $this->liveClass->join_url ?? url('/student/live-classes'),
         ];

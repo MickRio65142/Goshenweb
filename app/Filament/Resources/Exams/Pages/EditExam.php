@@ -38,8 +38,11 @@ class EditExam extends EditRecord
         $formData = $this->form->getState();
 
         $bulkImport = $formData['bulk_import'] ?? '';
-        if (!empty(trim($bulkImport))) {
+        $replaceQuestions = $formData['replace_questions'] ?? false;
+        if (!empty(trim($bulkImport)) && $replaceQuestions) {
             $this->record->questions()->delete();
+            $this->processBulkImport($this->record, $bulkImport);
+        } elseif (!empty(trim($bulkImport)) && !$replaceQuestions) {
             $this->processBulkImport($this->record, $bulkImport);
         }
 
@@ -47,7 +50,7 @@ class EditExam extends EditRecord
 
         if ($this->record->course_id) {
             $students = \App\Models\User::whereHas('enrolledCourses', fn($q) => $q->where('course_id', $this->record->course_id))->get();
-            \Illuminate\Support\Facades\Notification::send($students, new \App\Notifications\ExamCreated($this->record));
+            \Illuminate\Support\Facades\Notification::send($students, new \App\Notifications\ExamCreated($this->record, 'updated'));
         }
     }
 

@@ -2,9 +2,9 @@
     @php
         $announcements = \App\Models\Announcement::latest()->get();
         $total = $announcements->count();
-        $critical = $announcements->where('priority', 'critical')->count();
-        $high = $announcements->where('priority', 'high')->count();
-        $normal = $announcements->where('priority', 'normal')->count();
+        $critical = $announcements->where('priority', 'high')->count();
+        $high = $announcements->where('priority', 'medium')->count();
+        $normal = $announcements->where('priority', 'low')->count();
     @endphp
     <div id="dash" x-data="{ search: '', mobileSidebar: false }">
         <x-student.dash-layout title="Announcements">
@@ -44,9 +44,9 @@
                         @foreach($announcements as $announcement)
                             @php
                                 $priorityColor = match($announcement->priority) {
-                                    'critical' => '#dc2626',
-                                    'high' => '#f5a524',
-                                    'normal' => '#16a34a',
+                                    'high' => '#dc2626',
+                                    'medium' => '#f5a524',
+                                    'low' => '#16a34a',
                                     default => '#6b7280'
                                 };
                             @endphp

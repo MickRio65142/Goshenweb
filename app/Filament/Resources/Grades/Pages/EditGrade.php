@@ -15,7 +15,7 @@ class EditGrade extends EditRecord
     {
         $this->record->refresh();
         if ($this->record->user) {
-            $this->record->user->notify(new \App\Notifications\GradePosted($this->record));
+            $this->record->user->notify(new \App\Notifications\GradePosted($this->record, 'updated'));
         }
     }
 }

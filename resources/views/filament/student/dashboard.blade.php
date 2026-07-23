@@ -339,8 +339,8 @@
     @foreach(array_slice($announcements, 0, 4) as $a)
         @php
             $priorityClass = match($a['priority']) {
-                'critical' => 'bg-red-500',
-                'high' => 'bg-amber-500',
+                'high' => 'bg-red-500',
+                'medium' => 'bg-amber-500',
                 default => 'bg-slate-500',
             };
         @endphp

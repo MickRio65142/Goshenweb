@@ -15,7 +15,7 @@ class EditCertificate extends EditRecord
     {
         $this->record->refresh();
         if ($this->record->user) {
-            $this->record->user->notify(new \App\Notifications\CertificateIssued($this->record));
+            $this->record->user->notify(new \App\Notifications\CertificateIssued($this->record, 'updated'));
         }
     }
 }
