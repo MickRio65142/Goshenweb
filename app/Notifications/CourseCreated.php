@@ -5,6 +5,7 @@ namespace App\Notifications;
 use App\Models\Course;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class CourseCreated extends Notification
 {
@@ -14,7 +15,18 @@ class CourseCreated extends Notification
 
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['database', 'mail'];
+    }
+
+    public function toMail(object $notifiable): MailMessage
+    {
+        $name = $this->course->title ?: $this->course->name;
+        return (new MailMessage)
+            ->subject('New Course Available: ' . $name)
+            ->greeting('Hello!')
+            ->line('A new course has been added:')
+            ->line($name)
+            ->action('View Course', url('/student/enrollments'));
     }
 
     public function toArray(object $notifiable): array

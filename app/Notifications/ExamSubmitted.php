@@ -5,6 +5,7 @@ namespace App\Notifications;
 use App\Models\ExamAttempt;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class ExamSubmitted extends Notification
 {
@@ -14,7 +15,19 @@ class ExamSubmitted extends Notification
 
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['database', 'mail'];
+    }
+
+    public function toMail(object $notifiable): MailMessage
+    {
+        $exam = $this->attempt->exam;
+        $status = $this->attempt->passed ? 'Passed' : 'Failed';
+        return (new MailMessage)
+            ->subject('Exam Submitted: ' . ($exam->title ?? 'Exam'))
+            ->greeting('Hello!')
+            ->line($this->attempt->name . ' has submitted the exam "' . ($exam->title ?? 'Exam') . '".')
+            ->line('Score: ' . $this->attempt->score . '% (' . $status . ')')
+            ->action('View Results', url('/admin/exam-results'));
     }
 
     public function toArray(object $notifiable): array

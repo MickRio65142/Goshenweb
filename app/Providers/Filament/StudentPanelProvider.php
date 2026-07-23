@@ -85,6 +85,7 @@ class StudentPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                'verified',
                 CheckEnrollmentStatus::class,
             ]);
     }

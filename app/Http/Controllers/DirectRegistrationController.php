@@ -106,6 +106,8 @@ class DirectRegistrationController extends Controller
             'campus' => $validated['campus'],
         ]);
 
+        $user->sendEmailVerificationNotification();
+
         if ($courseId) {
             Enrollment::create([
                 'user_id' => $user->id,
@@ -226,6 +228,8 @@ class DirectRegistrationController extends Controller
             'heard_about_us' => $validated['heard_about_us'] ?? null,
             'campus' => $validated['campus'],
         ]);
+
+        $user->sendEmailVerificationNotification();
 
         $allCourses = (new CourseController)->getCourses();
 
@@ -353,6 +357,8 @@ class DirectRegistrationController extends Controller
             'heard_about_us' => $validated['heard_about_us'] ?? null,
             'campus' => $validated['campus'],
         ]);
+
+        $user->sendEmailVerificationNotification();
 
         $allCourses = (new CourseController)->getCourses();
 
@@ -498,6 +504,8 @@ class DirectRegistrationController extends Controller
             'heard_about_us' => $validated['heard_about_us'] ?? null,
             'campus' => $validated['campus'],
         ]);
+
+        $user->sendEmailVerificationNotification();
 
         foreach ($validSlugs as $slug) {
             $courseRecord = Course::where('code', $slug)->first();
