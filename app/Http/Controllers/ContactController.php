@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
@@ -58,6 +59,7 @@ class ContactController extends Controller
                 }
             );
         } catch (\Exception $e) {
+            Log::error('Contact form email failed: ' . $e->getMessage());
             return back()->with('error', 'Failed to send message. Please try again.');
         }
 
@@ -97,6 +99,7 @@ class ContactController extends Controller
                 }
             );
         } catch (\Exception $e) {
+            Log::error('Enquiry email failed: ' . $e->getMessage());
             return back()->with('error', 'Failed to send enquiry. Please try again.');
         }
 

@@ -9,7 +9,7 @@ class LiveClass extends Model
 {
     protected $table = 'live_classes';
 
-    protected $fillable = ['course_id', 'platform', 'join_url', 'classroom_details', 'scheduled_at', 'end_time'];
+    protected $fillable = ['course_id', 'platform', 'join_url', 'classroom_details', 'scheduled_at', 'end_time', 'status'];
 
     protected $casts = [
         'scheduled_at' => 'datetime',

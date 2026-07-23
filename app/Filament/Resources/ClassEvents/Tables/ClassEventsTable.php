@@ -28,6 +28,15 @@ class ClassEventsTable
                     ->dateTime()
                     ->sortable()
                     ->label('End Time'),
+                TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'upcoming' => 'warning',
+                        'live' => 'success',
+                        'completed' => 'gray',
+                        'cancelled' => 'danger',
+                        default => 'gray',
+                    }),
                 TextColumn::make('join_url')
                     ->label('Join Link')
                     ->url(fn ($state) => $state)

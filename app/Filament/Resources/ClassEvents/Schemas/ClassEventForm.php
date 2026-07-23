@@ -30,6 +30,14 @@ class ClassEventForm
                     ->required()
                     ->placeholder('e.g., Zoom link, Meet link, WhatsApp invite URL')
                     ->columnSpanFull(),
+                Select::make('status')
+                    ->options([
+                        'upcoming' => 'Upcoming',
+                        'live' => 'Live',
+                        'completed' => 'Completed',
+                        'cancelled' => 'Cancelled',
+                    ])
+                    ->default('upcoming'),
                 TextInput::make('classroom_details')
                     ->placeholder('Additional notes or instructions')
                     ->columnSpanFull(),

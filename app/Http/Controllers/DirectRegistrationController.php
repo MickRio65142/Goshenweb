@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Services\PaymentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
@@ -142,6 +143,7 @@ class DirectRegistrationController extends Controller
                 }
             );
         } catch (\Exception $e) {
+            Log::error('Registration email failed: ' . $e->getMessage());
         }
 
         auth()->login($user);
@@ -266,6 +268,7 @@ class DirectRegistrationController extends Controller
                 }
             );
         } catch (\Exception $e) {
+            Log::error('Healthcare registration email failed: ' . $e->getMessage());
         }
 
         auth()->login($user);
@@ -390,6 +393,7 @@ class DirectRegistrationController extends Controller
                 }
             );
         } catch (\Exception $e) {
+            Log::error('Silver registration email failed: ' . $e->getMessage());
         }
 
         auth()->login($user);
@@ -529,6 +533,7 @@ class DirectRegistrationController extends Controller
                 }
             );
         } catch (\Exception $e) {
+            Log::error('Gold registration email failed: ' . $e->getMessage());
         }
 
         auth()->login($user);
