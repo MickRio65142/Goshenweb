@@ -22,6 +22,8 @@ class CourseSeeder extends Seeder
         ];
 
         foreach ($courses as $course) {
+            $course['title'] = $course['name'];
+            $course['credit_hours'] = 3;
             Course::firstOrCreate(
                 ['code' => $course['code']],
                 $course
