@@ -24,7 +24,7 @@ class ListCourses extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make()
+            CreateAction::make()->createAnother(false)
                 ->icon('heroicon-o-plus-circle')
                 ->color('primary'),
         ];

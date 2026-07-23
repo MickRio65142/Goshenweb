@@ -53,6 +53,18 @@ class EnrollmentsTable
             ])
             ->filters([])
             ->actions([
+                Action::make('approve')
+                    ->label('Approve')
+                    ->icon('fas-check')
+                    ->color('success')
+                    ->action(function ($record) {
+                        $record->update(['status' => 'active']);
+                        if ($record->user) {
+                            $record->user->notify(new \App\Notifications\EnrollmentConfirmed($record));
+                        }
+                    })
+                    ->visible(fn ($record) => $record->status === 'pending')
+                    ->requiresConfirmation(),
                 Action::make('suspend')
                     ->label('Suspend')
                     ->icon('fas-ban')

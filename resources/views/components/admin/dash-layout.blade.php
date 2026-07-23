@@ -16,6 +16,36 @@
         'time' => $n->created_at->diffForHumans(),
         'read' => !is_null($n->read_at),
     ])->values()->toArray();
+    $nav = [
+        ['label' => 'Academics', 'items' => [
+            ['label' => 'Courses', 'icon' => 'fa-book', 'url' => '/admin/courses', 'pattern' => '/courses*'],
+            ['label' => 'Grades', 'icon' => 'fa-chart-bar', 'url' => '/admin/grades', 'pattern' => '/grades*'],
+            ['label' => 'Events', 'icon' => 'fa-calendar-check', 'url' => '/admin/events', 'pattern' => '/events*'],
+            ['label' => 'Exams', 'icon' => 'fa-pencil-alt', 'url' => '/admin/exams', 'pattern' => '/exams*'],
+            ['label' => 'Exam Results', 'icon' => 'fa-chart-simple', 'url' => '/admin/exam-results', 'pattern' => '/exam-results*'],
+            ['label' => 'Bulk Import', 'icon' => 'fa-file-upload', 'url' => '/admin/bulk-import-questions', 'pattern' => '/bulk-import-questions*'],
+        ]],
+        ['label' => 'Student Records', 'items' => [
+            ['label' => 'Users', 'icon' => 'fa-users', 'url' => '/admin/users', 'pattern' => '/users*'],
+            ['label' => 'Enrollments', 'icon' => 'fa-user-graduate', 'url' => '/admin/enrollments', 'pattern' => '/enrollments*'],
+            ['label' => 'Student Documents', 'icon' => 'fa-file-upload', 'url' => '/admin/student-documents', 'pattern' => '/student-documents*'],
+        ]],
+        ['label' => 'Live Learning', 'items' => [
+            ['label' => 'Live Classes', 'icon' => 'fa-video', 'url' => '/admin/class-events', 'pattern' => '/class-events*'],
+        ]],
+        ['label' => 'Communication', 'items' => [
+            ['label' => 'Announcements', 'icon' => 'fa-bullhorn', 'url' => '/admin/announcements', 'pattern' => '/announcements*'],
+        ]],
+        ['label' => 'Records', 'items' => [
+            ['label' => 'Certificates', 'icon' => 'fa-certificate', 'url' => '/admin/certificates', 'pattern' => '/certificates*'],
+        ]],
+        ['label' => 'Finance', 'items' => [
+            ['label' => 'Transactions', 'icon' => 'fa-credit-card', 'url' => '/admin/transactions', 'pattern' => '/transactions*'],
+        ]],
+        ['label' => 'System', 'items' => [
+            ['label' => 'Portal Settings', 'icon' => 'fa-cog', 'url' => '/admin/settings', 'pattern' => '/settings*'],
+        ]],
+    ];
 @endphp
 
 <button @@click="mobileSidebar = !mobileSidebar" class="mobile-toggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
@@ -31,41 +61,16 @@
                 <i class="fas fa-th-large"></i>Dashboard
             </a>
         </div>
+        @foreach($nav as $section)
         <div class="sidebar-section">
-            <div class="sidebar-section-label">Academics</div>
-            <a href="{{ url('/admin/courses') }}" class="sidebar-link {{ $is('/courses*') ? 'active' : '' }}"><i class="fas fa-book"></i>Courses</a>
-            <a href="{{ url('/admin/grades') }}" class="sidebar-link {{ $is('/grades*') ? 'active' : '' }}"><i class="fas fa-chart-bar"></i>Grades</a>
-            <a href="{{ url('/admin/events') }}" class="sidebar-link {{ $is('/events*') ? 'active' : '' }}"><i class="fas fa-calendar-check"></i>Events</a>
-            <a href="{{ url('/admin/exams') }}" class="sidebar-link {{ $is('/exams*') ? 'active' : '' }}"><i class="fas fa-pencil-alt"></i>Exams</a>
-            <a href="{{ url('/admin/exam-results') }}" class="sidebar-link {{ $is('/exam-results*') ? 'active' : '' }}"><i class="fas fa-chart-simple"></i>Exam Results</a>
-            <a href="{{ url('/admin/bulk-import-questions') }}" class="sidebar-link {{ $is('/bulk-import-questions*') ? 'active' : '' }}"><i class="fas fa-file-upload"></i>Bulk Import</a>
+            <div class="sidebar-section-label">{{ $section['label'] }}</div>
+            @foreach($section['items'] as $item)
+            <a href="{{ url($item['url']) }}" class="sidebar-link {{ $is($item['pattern']) ? 'active' : '' }}">
+                <i class="fas {{ $item['icon'] }}"></i>{{ $item['label'] }}
+            </a>
+            @endforeach
         </div>
-        <div class="sidebar-section">
-            <div class="sidebar-section-label">Student Records</div>
-            <a href="{{ url('/admin/users') }}" class="sidebar-link {{ $is('/users*') ? 'active' : '' }}"><i class="fas fa-users"></i>Users</a>
-            <a href="{{ url('/admin/enrollments') }}" class="sidebar-link {{ $is('/enrollments*') ? 'active' : '' }}"><i class="fas fa-user-graduate"></i>Enrollments</a>
-            <a href="{{ url('/admin/student-documents') }}" class="sidebar-link {{ $is('/student-documents*') ? 'active' : '' }}"><i class="fas fa-file-upload"></i>Student Documents</a>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-section-label">Live Learning</div>
-            <a href="{{ url('/admin/class-events') }}" class="sidebar-link {{ $is('/class-events*') ? 'active' : '' }}"><i class="fas fa-video"></i>Live Classes</a>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-section-label">Communication</div>
-            <a href="{{ url('/admin/announcements') }}" class="sidebar-link {{ $is('/announcements*') ? 'active' : '' }}"><i class="fas fa-bullhorn"></i>Announcements</a>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-section-label">Records</div>
-            <a href="{{ url('/admin/certificates') }}" class="sidebar-link {{ $is('/certificates*') ? 'active' : '' }}"><i class="fas fa-certificate"></i>Certificates</a>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-section-label">Finance</div>
-            <a href="{{ url('/admin/transactions') }}" class="sidebar-link {{ $is('/transactions*') ? 'active' : '' }}"><i class="fas fa-credit-card"></i>Transactions</a>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-section-label">System</div>
-            <a href="{{ url('/admin/settings') }}" class="sidebar-link {{ $is('/settings*') ? 'active' : '' }}"><i class="fas fa-cog"></i>Portal Settings</a>
-        </div>
+        @endforeach
     </nav>
 </aside>
 

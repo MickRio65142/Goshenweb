@@ -16,6 +16,32 @@
         'time' => $n->created_at->diffForHumans(),
         'read' => !is_null($n->read_at),
     ])->values()->toArray();
+    $nav = [
+        ['label' => 'Academics', 'items' => [
+            ['label' => 'Take Exam', 'icon' => 'fa-pencil-alt', 'url' => '/student/exams', 'pattern' => '/exams*'],
+            ['label' => 'My Courses', 'icon' => 'fa-book-open', 'url' => '/student/enrollments', 'pattern' => '/enrollments*'],
+            ['label' => 'My Grades & CA', 'icon' => 'fa-chart-bar', 'url' => '/student/grades', 'pattern' => '/grades*'],
+            ['label' => 'Class Timetables', 'icon' => 'fa-calendar-alt', 'url' => '/student/timetables', 'pattern' => '/timetables*'],
+            ['label' => 'Event Log', 'icon' => 'fa-list-alt', 'url' => '/student/events', 'pattern' => '/events*'],
+        ]],
+        ['label' => 'Communication', 'items' => [
+            ['label' => 'Announcements', 'icon' => 'fa-bullhorn', 'url' => '/student/announcements', 'pattern' => '/announcements*'],
+            ['label' => 'Notifications', 'icon' => 'fa-bell', 'url' => '/student/notifications', 'pattern' => '/notifications*'],
+        ]],
+        ['label' => 'Resources', 'items' => [
+            ['label' => 'Digital Library', 'icon' => 'fa-book', 'url' => '/student/books', 'pattern' => '/books*'],
+            ['label' => 'My Documents', 'icon' => 'fa-file-upload', 'url' => '/student/student-documents', 'pattern' => '/student-documents*'],
+        ]],
+        ['label' => 'Records', 'items' => [
+            ['label' => 'My Certificates', 'icon' => 'fa-certificate', 'url' => '/student/certificates', 'pattern' => '/certificates*'],
+        ]],
+        ['label' => 'Live Learning', 'items' => [
+            ['label' => 'Live Classes', 'icon' => 'fa-video', 'url' => '/student/live-classes', 'pattern' => '/live-classes*'],
+        ]],
+        ['label' => 'Finance', 'items' => [
+            ['label' => 'Transactions', 'icon' => 'fa-credit-card', 'url' => '/student/transactions', 'pattern' => '/transactions*'],
+        ]],
+    ];
 @endphp
 
 <button @@click="mobileSidebar = !mobileSidebar" class="mobile-toggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
@@ -29,37 +55,16 @@
         <div class="sidebar-section">
             <a href="{{ url('/student') }}" class="sidebar-link {{ $is('') || $is('/student-dashboard') ? 'active' : '' }}"><i class="fas fa-th-large"></i>Dashboard</a>
         </div>
+        @foreach($nav as $section)
         <div class="sidebar-section">
-            <div class="sidebar-section-label">Academics</div>
-            <a href="{{ url('/student/academic-calendar') }}" class="sidebar-link {{ $is('/academic-calendar*') ? 'active' : '' }}"><i class="fas fa-calendar-plus"></i>Academic Calendar</a>
-            <a href="{{ url('/student/enrollments') }}" class="sidebar-link {{ $is('/enrollments*') ? 'active' : '' }}"><i class="fas fa-book-open"></i>My Courses</a>
-            <a href="{{ url('/student/exams') }}" class="sidebar-link {{ $is('/exams*') ? 'active' : '' }}"><i class="fas fa-pencil-alt"></i>My Exams</a>
-            <a href="{{ url('/student/grades') }}" class="sidebar-link {{ $is('/grades*') ? 'active' : '' }}"><i class="fas fa-chart-bar"></i>My Grades & CA</a>
-            <a href="{{ url('/student/events') }}" class="sidebar-link {{ $is('/events*') ? 'active' : '' }}"><i class="fas fa-list-alt"></i>Event Log</a>
-            <a href="{{ url('/student/timetables') }}" class="sidebar-link {{ $is('/timetables*') ? 'active' : '' }}"><i class="fas fa-calendar-alt"></i>Class Timetables</a>
+            <div class="sidebar-section-label">{{ $section['label'] }}</div>
+            @foreach($section['items'] as $item)
+            <a href="{{ url($item['url']) }}" class="sidebar-link {{ $is($item['pattern']) ? 'active' : '' }}">
+                <i class="fas {{ $item['icon'] }}"></i>{{ $item['label'] }}
+            </a>
+            @endforeach
         </div>
-        <div class="sidebar-section">
-            <div class="sidebar-section-label">Communication</div>
-            <a href="{{ url('/student/announcements') }}" class="sidebar-link {{ $is('/announcements*') ? 'active' : '' }}"><i class="fas fa-bullhorn"></i>Announcements</a>
-            <a href="{{ url('/student/notifications') }}" class="sidebar-link {{ $is('/notifications*') ? 'active' : '' }}"><i class="fas fa-bell"></i>Notifications</a>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-section-label">Resources</div>
-            <a href="{{ url('/student/books') }}" class="sidebar-link {{ $is('/books*') ? 'active' : '' }}"><i class="fas fa-book"></i>Digital Library</a>
-            <a href="{{ url('/student/student-documents') }}" class="sidebar-link {{ $is('/student-documents*') ? 'active' : '' }}"><i class="fas fa-file-upload"></i>My Documents</a>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-section-label">Records</div>
-            <a href="{{ url('/student/certificates') }}" class="sidebar-link {{ $is('/certificates*') ? 'active' : '' }}"><i class="fas fa-certificate"></i>My Certificates</a>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-section-label">Live Learning</div>
-            <a href="{{ url('/student/live-classes') }}" class="sidebar-link {{ $is('/live-classes*') ? 'active' : '' }}"><i class="fas fa-video"></i>Live Classes</a>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-section-label">Finance</div>
-            <a href="{{ url('/student/transactions') }}" class="sidebar-link {{ $is('/transactions*') ? 'active' : '' }}"><i class="fas fa-credit-card"></i>Transactions</a>
-        </div>
+        @endforeach
     </nav>
 </aside>
 

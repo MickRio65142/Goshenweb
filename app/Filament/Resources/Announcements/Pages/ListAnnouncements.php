@@ -22,7 +22,7 @@ class ListAnnouncements extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make()
+            CreateAction::make()->createAnother(false)->createAnother(false)
                 ->icon('heroicon-o-plus-circle')
                 ->color('info'),
         ];
