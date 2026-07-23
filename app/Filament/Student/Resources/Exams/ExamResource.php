@@ -20,7 +20,7 @@ class ExamResource extends Resource
 
     protected static ?int $navigationSort = 3;
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-pencil-square';
-    protected static ?string $navigationLabel = 'My Exams';
+    protected static ?string $navigationLabel = 'Take Exam';
     protected static ?string $modelLabel = 'Exam';
 
     public static function getNavigationGroup(): string | UnitEnum | null
