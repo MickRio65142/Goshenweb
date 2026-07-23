@@ -34,6 +34,7 @@ class StudentPanelProvider extends PanelProvider
             ->brandLogo(asset('images/logo.png'))
             ->brandLogoHeight('2.75rem')
             ->brandName('Goshen Work Skill Association')
+            ->favicon(asset('favicon.ico'))
             
             ->colors([
                 'primary' => '#091c3d',

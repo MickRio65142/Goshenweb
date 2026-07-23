@@ -1,6 +1,7 @@
 <x-filament-panels::page>
     @php
         $userId = auth()->id();
+        $examPortalOpen = \App\Models\Setting::where('key', 'exam_portal_open')->value('value') === 'true';
         $enrolledCourseIds = \App\Models\Enrollment::where('user_id', $userId)->pluck('course_id');
 
         $exams = \App\Models\Exam::whereIn('course_id', $enrolledCourseIds)
@@ -83,9 +84,13 @@
                     <template x-if="filtered.length === 0 && search">
                         <div class="empty-state"><i class="fas fa-search"></i><h3>No matches</h3><p>No exams match "<span x-text="search"></span>"</p></div>
                     </template>
+                    @if(!$examPortalOpen)
+                        <div class="empty-state"><i class="fas fa-door-closed"></i><h3>Exam Portal Closed</h3><p>The exam portal is currently closed. Please check back later when exams are open.</p></div>
+                    @else
                     <template x-if="filtered.length === 0 && !search">
                         <div class="empty-state"><i class="fas fa-pencil-alt"></i><h3>No Exams Available</h3><p>There are no exams available for your enrolled courses yet. Check back later.</p></div>
                     </template>
+                    @endif
                     <template x-if="filtered.length > 0">
                         <div class="resource-list">
                             <template x-for="exam in filtered" :key="exam.id">

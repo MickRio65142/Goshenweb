@@ -36,6 +36,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogo(asset('images/logo.png'))
             ->brandLogoHeight('2.75rem')
             ->brandName('Goshen Admin')
+            ->favicon(asset('favicon.ico'))
 
             // Admin Colors (Using Deep Blue primary so it feels different from the student red)
             ->colors([
