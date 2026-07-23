@@ -10,7 +10,8 @@ class Exam extends Model
 {
     protected $fillable = [
         'title', 'description', 'course_id', 'course_slug', 'duration_minutes',
-        'pass_score', 'max_attempts', 'shuffle_questions', 'is_active', 'reference_material',
+        'time_per_question_seconds', 'pass_score', 'max_attempts', 'shuffle_questions',
+        'is_active', 'reference_material',
     ];
 
     protected function casts(): array
@@ -19,6 +20,7 @@ class Exam extends Model
             'shuffle_questions' => 'boolean',
             'is_active' => 'boolean',
             'reference_material' => 'json',
+            'time_per_question_seconds' => 'integer',
         ];
     }
 

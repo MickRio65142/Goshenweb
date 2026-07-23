@@ -62,7 +62,15 @@ class BulkImportQuestions extends Page
                     ->default(60)
                     ->minValue(1)
                     ->required()
-                    ->label('Duration (minutes)'),
+                    ->label('Total Duration (minutes)')
+                    ->helperText('Overall exam time limit'),
+                TextInput::make('time_per_question_seconds')
+                    ->numeric()
+                    ->nullable()
+                    ->minValue(5)
+                    ->maxValue(600)
+                    ->label('Time Per Question (seconds)')
+                    ->helperText('Leave empty for no per-question limit. When set, questions appear one at a time.'),
                 TextInput::make('pass_score')
                     ->numeric()
                     ->default(70)
@@ -175,6 +183,7 @@ class BulkImportQuestions extends Page
                 'title' => $data['title'],
                 'course_id' => $data['course_id'],
                 'duration_minutes' => $data['duration_minutes'] ?? 60,
+                'time_per_question_seconds' => $data['time_per_question_seconds'] ?? null,
                 'pass_score' => $data['pass_score'] ?? 70,
                 'max_attempts' => $data['max_attempts'] ?? 2,
                 'shuffle_questions' => $data['shuffle_questions'] ?? true,

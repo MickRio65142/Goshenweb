@@ -38,6 +38,7 @@
             <a href="{{ url('/admin/events') }}" class="sidebar-link {{ $is('/events*') ? 'active' : '' }}"><i class="fas fa-calendar-check"></i>Events</a>
             <a href="{{ url('/admin/exams') }}" class="sidebar-link {{ $is('/exams*') ? 'active' : '' }}"><i class="fas fa-pencil-alt"></i>Exams</a>
             <a href="{{ url('/admin/exam-results') }}" class="sidebar-link {{ $is('/exam-results*') ? 'active' : '' }}"><i class="fas fa-chart-simple"></i>Exam Results</a>
+            <a href="{{ url('/admin/bulk-import-questions') }}" class="sidebar-link {{ $is('/bulk-import-questions*') ? 'active' : '' }}"><i class="fas fa-file-upload"></i>Bulk Import</a>
         </div>
         <div class="sidebar-section">
             <div class="sidebar-section-label">Student Records</div>

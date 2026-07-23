@@ -67,10 +67,19 @@ class StudentExamController extends Controller
         }
 
         $exam = $attempt->exam;
-        $timeRemaining = $exam->duration_minutes * 60 - now()->diffInSeconds($attempt->started_at);
 
-        if ($timeRemaining <= 0) {
-            return $this->autoSubmit($attempt);
+        if ($exam->time_per_question_seconds) {
+            $totalBackupSeconds = $exam->time_per_question_seconds * max($exam->questions()->count(), 1);
+            $elapsed = now()->diffInSeconds($attempt->started_at);
+            if ($elapsed >= $totalBackupSeconds) {
+                return $this->autoSubmit($attempt);
+            }
+            $timeRemaining = $totalBackupSeconds - $elapsed;
+        } else {
+            $timeRemaining = $exam->duration_minutes * 60 - now()->diffInSeconds($attempt->started_at);
+            if ($timeRemaining <= 0) {
+                return $this->autoSubmit($attempt);
+            }
         }
 
         $questions = $exam->shuffle_questions
