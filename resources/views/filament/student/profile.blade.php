@@ -14,7 +14,7 @@
         $program = optional(\App\Models\Enrollment::where('user_id', $users->id)->with('course')->first())->course->name ?? 'No Program Assigned';
     @endphp
 
-    <div id="dash" x-data="{ search: '', mobileSidebar: false }">
+    <div id="dash" x-data="{ mobileSidebar: false }">
         <x-student.dash-layout title="Profile Settings">
             <div class="dash-content">
                 <form wire:submit="save" class="profile-grid">

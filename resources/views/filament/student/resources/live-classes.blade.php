@@ -12,7 +12,23 @@
             'On-Campus' => '#6b7280',
         ];
     @endphp
-    <div id="dash" x-data="{ search: '', mobileSidebar: false }">
+    <div id="dash" x-data="{
+        search: new URLSearchParams(window.location.search).get('search') || '',
+        mobileSidebar: false,
+        items: {{ json_encode($classes->map(fn($c) => [
+            'course' => $c->course->name ?? 'N/A',
+            'date' => $c->scheduled_at->format('M d, Y g:i A'),
+            'relative' => $c->scheduled_at->diffForHumans(),
+            'platform' => $c->platform,
+            'platformColor' => $platformColors[$c->platform] ?? '#6b7280',
+            'joinUrl' => $c->join_url,
+        ])) }},
+        get filtered() {
+            if (!this.search) return this.items;
+            const q = this.search.toLowerCase();
+            return this.items.filter(i => i.course.toLowerCase().includes(q) || i.platform.toLowerCase().includes(q));
+        }
+    }">
         <x-student.dash-layout title="Live Classes">
             <div class="dash-content">
                 <div class="stats-row">
@@ -45,41 +61,33 @@
                         </div>
                     </div>
                 </div>
-                @if(count($classes))
+                <template x-if="filtered.length === 0 && search">
+                    <div class="empty-state"><i class="fa-solid fa-search"></i><h3>No matches</h3><p>No live classes match "<span x-text="search"></span>"</p></div>
+                </template>
+                <template x-if="filtered.length === 0 && !search">
+                    <div class="empty-state"><i class="fa-solid fa-video" style="font-size: 3rem; color: #9ca3af; margin-bottom: 1rem;"></i><p>No live classes scheduled</p></div>
+                </template>
+                <template x-if="filtered.length > 0">
                     <div class="resource-list">
-                        @foreach($classes as $item)
-                            @php
-                                $platformColor = $platformColors[$item->platform] ?? '#6b7280';
-                            @endphp
+                        <template x-for="item in filtered" :key="item.date">
                             <div class="resource-item">
-                                <div class="resource-item-icon">
-                                    <i class="fa-solid fa-video"></i>
-                                </div>
+                                <div class="resource-item-icon"><i class="fa-solid fa-video"></i></div>
                                 <div class="resource-item-body">
-                                    <div class="resource-item-title">{{ $item->course->name ?? 'N/A' }}</div>
-                                    <div class="resource-item-meta">
-                                        {{ $item->scheduled_at->format('M d, Y g:i A') }} &middot; {{ $item->scheduled_at->diffForHumans() }}
-                                    </div>
+                                    <div class="resource-item-title" x-text="item.course"></div>
+                                    <div class="resource-item-meta" x-text="item.date + ' · ' + item.relative"></div>
                                 </div>
-                                <div class="resource-item-badge" style="background: {{ $platformColor }};">
-                                    {{ $item->platform }}
-                                </div>
+                                <div class="resource-item-badge" :style="'background: ' + item.platformColor + ';'" x-text="item.platform"></div>
                                 <div class="resource-item-action">
-                                    @if($item->join_url)
-                                        <a href="{{ $item->join_url }}" target="_blank" style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.5rem 1rem; background: #2563eb; color: #fff; border-radius: 0.375rem; text-decoration: none; font-size: 0.875rem;">
+                                    <template x-if="item.joinUrl">
+                                        <a :href="item.joinUrl" target="_blank" style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.5rem 1rem; background: #2563eb; color: #fff; border-radius: 0.375rem; text-decoration: none; font-size: 0.875rem;">
                                             <i class="fa-solid fa-arrow-up-right-from-square"></i> Join
                                         </a>
-                                    @endif
+                                    </template>
                                 </div>
                             </div>
-                        @endforeach
+                        </template>
                     </div>
-                @else
-                    <div class="empty-state">
-                        <i class="fa-solid fa-video" style="font-size: 3rem; color: #9ca3af; margin-bottom: 1rem;"></i>
-                        <p>No live classes scheduled</p>
-                    </div>
-                @endif
+                </template>
             </div>
         </x-student.dash-layout>
     </div>

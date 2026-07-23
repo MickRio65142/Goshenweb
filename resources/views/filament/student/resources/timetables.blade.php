@@ -4,7 +4,21 @@
         $total = $timetables->count();
         $latest = $timetables->first()?->updated_at;
     @endphp
-    <div id="dash" x-data="{ search: '', mobileSidebar: false }">
+    <div id="dash" x-data="{
+        search: new URLSearchParams(window.location.search).get('search') || '',
+        mobileSidebar: false,
+        items: {{ json_encode($timetables->map(fn($t) => [
+            'title' => $t->title,
+            'desc' => $t->description,
+            'updated' => $t->updated_at->format('M d, Y'),
+            'file' => $t->file_path ? asset('storage/' . $t->file_path) : null,
+        ])) }},
+        get filtered() {
+            if (!this.search) return this.items;
+            const q = this.search.toLowerCase();
+            return this.items.filter(i => i.title.toLowerCase().includes(q) || (i.desc && i.desc.toLowerCase().includes(q)));
+        }
+    }">
         <x-student.dash-layout title="Class Timetables">
             <div class="dash-content">
                 <div class="stats-row">
@@ -23,31 +37,36 @@
                         </div>
                     </div>
                 </div>
-                @if(count($timetables))
+                <template x-if="filtered.length === 0 && search">
+                    <div class="empty-state"><i class="fas fa-search"></i><h3>No matches</h3><p>No timetables match "<span x-text="search"></span>"</p></div>
+                </template>
+                <template x-if="filtered.length === 0 && !search">
+                    <div class="empty-state"><i class="fas fa-calendar-alt"></i><h3>No Timetables</h3><p>No timetables have been uploaded yet.</p></div>
+                </template>
+                <template x-if="filtered.length > 0">
                     <div class="resource-list">
-                        @foreach($timetables as $timetable)
+                        <template x-for="item in filtered" :key="item.title">
                             <div class="resource-item">
                                 <div class="resource-item-icon" style="background:#091c3d15;color:#091c3d"><i class="fas fa-calendar-alt"></i></div>
                                 <div class="resource-item-body">
-                                    <div class="resource-item-title">{{ $timetable->title }}</div>
+                                    <div class="resource-item-title" x-text="item.title"></div>
                                     <div class="resource-item-meta">
-                                        <span>{{ $timetable->description }}</span>
-                                        <span>Updated: {{ $timetable->updated_at->format('M d, Y') }}</span>
+                                        <span x-text="item.desc"></span>
+                                        <span x-text="'Updated: ' + item.updated"></span>
                                     </div>
                                 </div>
                                 <div class="resource-item-action">
-                                    @if($timetable->file_path)
-                                        <a href="{{ asset('storage/' . $timetable->file_path) }}" download><i class="fas fa-download"></i> Download</a>
-                                    @else
+                                    <template x-if="item.file">
+                                        <a :href="item.file" download><i class="fas fa-download"></i> Download</a>
+                                    </template>
+                                    <template x-if="!item.file">
                                         <span>No file</span>
-                                    @endif
+                                    </template>
                                 </div>
                             </div>
-                        @endforeach
+                        </template>
                     </div>
-                @else
-                    <div class="empty-state"><i class="fas fa-calendar-alt"></i><h3>No Timetables</h3><p>No timetables have been uploaded yet.</p></div>
-                @endif
+                </template>
             </div>
         </x-student.dash-layout>
     </div>

@@ -41,6 +41,7 @@ class NotificationResource extends Resource
             ->columns([
                 TextColumn::make('data.title')
                     ->label('Title')
+                    ->searchable()
                     ->weight('semibold')
                     ->description(fn ($record) => $record->data['body'] ?? ''),
                 TextColumn::make('created_at')

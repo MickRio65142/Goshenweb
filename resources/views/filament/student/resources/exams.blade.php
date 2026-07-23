@@ -25,7 +25,27 @@
             ->count('exam_id');
         $pending = $totalExams - $attempted;
     @endphp
-    <div id="dash" x-data="{ search: '', mobileSidebar: false }">
+    @php $examJson = $exams->map(fn($exam) => [
+        'id' => $exam->id,
+        'title' => $exam->title,
+        'course' => $exam->course->name ?? 'General',
+        'qcount' => $exam->questions_count,
+        'duration' => $exam->duration_minutes,
+        'maxAttempts' => $exam->max_attempts,
+        'attemptCount' => $examAttempts->get($exam->id, collect())->count(),
+        'bestScore' => ($best = $examAttempts->get($exam->id, collect())->sortByDesc('score')->first()) ? number_format($best->score, 1) : null,
+        'passed' => $examAttempts->get($exam->id, collect())->where('passed', true)->isNotEmpty(),
+    ])->values(); @endphp
+    <div id="dash" x-data="{
+        search: new URLSearchParams(window.location.search).get('search') || '',
+        mobileSidebar: false,
+        items: {{ $examJson }},
+        get filtered() {
+            if (!this.search) return this.items;
+            const q = this.search.toLowerCase();
+            return this.items.filter(e => e.title.toLowerCase().includes(q) || e.course.toLowerCase().includes(q));
+        }
+    }" x-init="items = {{ $examJson }}">
         <x-student.dash-layout title="My Exams">
             <div class="dash-content">
                 <div wire:poll.30s>
@@ -60,77 +80,49 @@
                         </div>
                     </div>
 
-                    @if($exams->count())
+                    <template x-if="filtered.length === 0 && search">
+                        <div class="empty-state"><i class="fas fa-search"></i><h3>No matches</h3><p>No exams match "<span x-text="search"></span>"</p></div>
+                    </template>
+                    <template x-if="filtered.length === 0 && !search">
+                        <div class="empty-state"><i class="fas fa-pencil-alt"></i><h3>No Exams Available</h3><p>There are no exams available for your enrolled courses yet. Check back later.</p></div>
+                    </template>
+                    <template x-if="filtered.length > 0">
                         <div class="resource-list">
-                            @foreach($exams as $exam)
-                                @php
-                                    $attempts = $examAttempts->get($exam->id, collect());
-                                    $bestAttempt = $attempts->sortByDesc('score')->first();
-                                    $attemptCount = $attempts->count();
-                                    $maxReached = $attemptCount >= $exam->max_attempts;
-                                    $examPassed = $attempts->where('passed', true)->isNotEmpty();
-
-                                    if (!$attemptCount) {
-                                        $status = 'pending';
-                                        $statusColor = '#f5a524';
-                                        $actionLabel = 'Start Exam';
-                                        $actionRoute = url("/student/exams/{$exam->id}/start");
-                                        $actionIcon = 'fa-play';
-                                    } elseif ($examPassed) {
-                                        $status = 'passed';
-                                        $statusColor = '#16a34a';
-                                        $actionLabel = 'Completed';
-                                        $actionRoute = null;
-                                        $actionIcon = 'fa-check';
-                                    } elseif ($maxReached) {
-                                        $status = 'max attempts';
-                                        $statusColor = '#dc2626';
-                                        $actionLabel = 'Max Attempts Reached';
-                                        $actionRoute = null;
-                                        $actionIcon = 'fa-ban';
-                                    } else {
-                                        $status = 'failed';
-                                        $statusColor = '#dc2626';
-                                        $remaining = $exam->max_attempts - $attemptCount;
-                                        $actionLabel = "Retry ({$remaining} left)";
-                                        $actionRoute = url("/student/exams/{$exam->id}/start");
-                                        $actionIcon = 'fa-rotate';
-                                    }
-                                @endphp
+                            <template x-for="exam in filtered" :key="exam.id">
                                 <div class="resource-item">
-                                    <div class="resource-item-icon" style="background:{{ $statusColor }}15;color:{{ $statusColor }}"><i class="fas {{ $actionIcon }}"></i></div>
+                                    <div class="resource-item-icon" :style="'background:' + (exam.passed ? '#16a34a' : exam.attemptCount === 0 ? '#f5a524' : '#dc2626') + '15;color:' + (exam.passed ? '#16a34a' : exam.attemptCount === 0 ? '#f5a524' : '#dc2626')">
+                                        <i class="fas" :class="exam.passed ? 'fa-check' : exam.attemptCount === 0 ? 'fa-play' : 'fa-rotate'"></i>
+                                    </div>
                                     <div class="resource-item-body">
-                                        <div class="resource-item-title">{{ $exam->title }}</div>
+                                        <div class="resource-item-title" x-text="exam.title"></div>
                                         <div class="resource-item-meta">
-                                            <span>{{ $exam->course->name ?? 'General' }}</span>
-                                            <span class="resource-item-badge" style="background:{{ $statusColor }}15;color:{{ $statusColor }}">{{ ucfirst($status) }}</span>
-                                            <span><i class="fas fa-question-circle"></i> {{ $exam->questions_count }} questions</span>
-                                            <span><i class="fas fa-clock"></i> {{ $exam->duration_minutes }} min</span>
-                                            @if($bestAttempt)
-                                                <span><i class="fas fa-star"></i> Score: {{ number_format($bestAttempt->score, 1) }}%</span>
-                                            @endif
-                                            @if($attemptCount > 0)
-                                                <span>Attempts: {{ $attemptCount }}/{{ $exam->max_attempts }}</span>
-                                            @endif
+                                            <span x-text="exam.course"></span>
+                                            <span class="resource-item-badge" :style="'background:' + (exam.passed ? '#16a34a' : exam.attemptCount === 0 ? '#f5a524' : '#dc2626') + '15;color:' + (exam.passed ? '#16a34a' : exam.attemptCount === 0 ? '#f5a524' : '#dc2626')" x-text="exam.passed ? 'Passed' : exam.attemptCount === 0 ? 'Pending' : 'Failed'"></span>
+                                            <span><i class="fas fa-question-circle"></i> <span x-text="exam.qcount + ' questions'"></span></span>
+                                            <span><i class="fas fa-clock"></i> <span x-text="exam.duration + ' min'"></span></span>
+                                            <template x-if="exam.bestScore">
+                                                <span><i class="fas fa-star"></i> Score: <span x-text="exam.bestScore + '%'"></span></span>
+                                            </template>
+                                            <template x-if="exam.attemptCount > 0">
+                                                <span x-text="'Attempts: ' + exam.attemptCount + '/' + exam.maxAttempts"></span>
+                                            </template>
                                         </div>
                                     </div>
                                     <div class="resource-item-action">
-                                        @if($actionRoute)
-                                            <a href="{{ $actionRoute }}"><i class="fas {{ $actionIcon }}" style="margin-right:4px;"></i> {{ $actionLabel }}</a>
-                                        @else
-                                            <span style="font-size:11px;font-weight:600;color:{{ $statusColor }};background:{{ $statusColor }}10;padding:7px 14px;border-radius:8px;display:inline-flex;align-items:center;gap:4px;"><i class="fas {{ $actionIcon }}"></i> {{ $actionLabel }}</span>
-                                        @endif
+                                        <template x-if="!exam.passed && exam.attemptCount < exam.maxAttempts">
+                                            <a :href="'/student/exams/' + exam.id + '/start'"><i class="fas" :class="exam.attemptCount === 0 ? 'fa-play' : 'fa-rotate'" style="margin-right:4px;"></i> <span x-text="exam.attemptCount === 0 ? 'Start Exam' : 'Retry (' + (exam.maxAttempts - exam.attemptCount) + ' left)'"></span></a>
+                                        </template>
+                                        <template x-if="exam.passed">
+                                            <span style="font-size:11px;font-weight:600;color:#16a34a;background:#16a34a10;padding:7px 14px;border-radius:8px;display:inline-flex;align-items:center;gap:4px;"><i class="fas fa-check"></i> Completed</span>
+                                        </template>
+                                        <template x-if="!exam.passed && exam.attemptCount >= exam.maxAttempts">
+                                            <span style="font-size:11px;font-weight:600;color:#dc2626;background:#dc262610;padding:7px 14px;border-radius:8px;display:inline-flex;align-items:center;gap:4px;"><i class="fas fa-ban"></i> Max Attempts Reached</span>
+                                        </template>
                                     </div>
                                 </div>
-                            @endforeach
+                            </template>
                         </div>
-                    @else
-                        <div class="empty-state">
-                            <i class="fas fa-pencil-alt"></i>
-                            <h3>No Exams Available</h3>
-                            <p>There are no exams available for your enrolled courses yet. Check back later.</p>
-                        </div>
-                    @endif
+                    </template>
                 </div>
             </div>
         </x-student.dash-layout>

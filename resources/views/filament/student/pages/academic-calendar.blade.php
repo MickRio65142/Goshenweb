@@ -1,6 +1,6 @@
 @php use Carbon\Carbon; @endphp
 <x-filament-panels::page>
-    <div id="dash" x-data="{ viewMode: 'grid', search: '', mobileSidebar: false }">
+    <div id="dash" x-data="{ viewMode: 'grid', search: new URLSearchParams(window.location.search).get('search') || '', mobileSidebar: false }">
         <x-student.dash-layout title="Academic Calendar">
             <div class="dash-content space-y-6">
                 <!-- Month Navigation + View Toggle -->

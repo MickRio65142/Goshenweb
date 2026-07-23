@@ -6,7 +6,22 @@
         $todayEvents = $events->filter(fn($e) => $e->event_date->isToday())->count();
         $past = $events->where('event_date', '<', now())->count();
     @endphp
-    <div id="dash" x-data="{ search: '', mobileSidebar: false }">
+    <div id="dash" x-data="{
+        search: new URLSearchParams(window.location.search).get('search') || '',
+        mobileSidebar: false,
+        items: {{ json_encode($events->map(fn($e) => [
+            'title' => $e->title,
+            'date' => $e->event_date->format('M d, Y - g:i A'),
+            'type' => $e->event_type,
+            'typeColor' => match($e->event_type) { 'exam' => '#dc2626', 'academic' => '#091c3d', 'workshop' => '#16a34a', 'holiday' => '#f5a524', 'graduation' => '#7c3aed', default => '#6b7280' },
+            'location' => $e->location ?? 'N/A',
+        ])) }},
+        get filtered() {
+            if (!this.search) return this.items;
+            const q = this.search.toLowerCase();
+            return this.items.filter(i => i.title.toLowerCase().includes(q) || i.type.toLowerCase().includes(q) || i.location.toLowerCase().includes(q));
+        }
+    }">
         <x-student.dash-layout title="Event Log">
             <div class="dash-content">
                 <div class="stats-row">
@@ -39,38 +54,32 @@
                         </div>
                     </div>
                 </div>
-                @if(count($events))
+                <template x-if="filtered.length === 0 && search">
+                    <div class="empty-state"><i class="fas fa-search"></i><h3>No matches</h3><p>No events match "<span x-text="search"></span>"</p></div>
+                </template>
+                <template x-if="filtered.length === 0 && !search">
+                    <div class="empty-state"><i class="fas fa-calendar-alt"></i><h3>No Events</h3><p>No events have been scheduled yet.</p></div>
+                </template>
+                <template x-if="filtered.length > 0">
                     <div class="resource-list">
-                        @foreach($events as $event)
-                            @php
-                                $typeColor = match($event->event_type) {
-                                    'exam' => '#dc2626',
-                                    'academic' => '#091c3d',
-                                    'workshop' => '#16a34a',
-                                    'holiday' => '#f5a524',
-                                    'graduation' => '#7c3aed',
-                                    default => '#6b7280'
-                                };
-                            @endphp
+                        <template x-for="item in filtered" :key="item.title + item.date">
                             <div class="resource-item">
                                 <div class="resource-item-icon" style="background:#091c3d15;color:#091c3d"><i class="fas fa-calendar-alt"></i></div>
                                 <div class="resource-item-body">
-                                    <div class="resource-item-title">{{ $event->title }}</div>
+                                    <div class="resource-item-title" x-text="item.title"></div>
                                     <div class="resource-item-meta">
-                                        <span>{{ $event->event_date->format('M d, Y - g:i A') }}</span>
-                                        <span class="resource-item-badge" style="background:{{ $typeColor }}15;color:{{ $typeColor }}">{{ ucfirst($event->event_type) }}</span>
-                                        <span>{{ $event->location ?? 'N/A' }}</span>
+                                        <span x-text="item.date"></span>
+                                        <span class="resource-item-badge" :style="'background:' + item.typeColor + '15;color:' + item.typeColor" x-text="item.type.charAt(0).toUpperCase() + item.type.slice(1)"></span>
+                                        <span x-text="item.location"></span>
                                     </div>
                                 </div>
                                 <div class="resource-item-action">
                                     <a href="#">View Event</a>
                                 </div>
                             </div>
-                        @endforeach
+                        </template>
                     </div>
-                @else
-                    <div class="empty-state"><i class="fas fa-calendar-alt"></i><h3>No Events</h3><p>No events have been scheduled yet.</p></div>
-                @endif
+                </template>
             </div>
         </x-student.dash-layout>
     </div>

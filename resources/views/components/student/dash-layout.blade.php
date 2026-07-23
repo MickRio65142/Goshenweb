@@ -68,9 +68,9 @@
         <div class="header-left">
             <h1 class="header-title">{{ $pageTitle }}</h1>
         </div>
-        <form action="{{ url('/student/enrollments') }}" method="GET" class="header-search">
+        <form method="GET" class="header-search">
             <i class="fas fa-search"></i>
-            <input type="text" name="search" placeholder="Search courses..." aria-label="Search" autocomplete="off">
+            <input type="text" name="search" placeholder="Search..." aria-label="Search" autocomplete="off" value="{{ request('search') }}">
         </form>
         <div class="header-right">
             <div class="header-notif-btn" x-data="{

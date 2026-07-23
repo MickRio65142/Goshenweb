@@ -6,7 +6,22 @@
         $high = $announcements->where('priority', 'medium')->count();
         $normal = $announcements->where('priority', 'low')->count();
     @endphp
-    <div id="dash" x-data="{ search: '', mobileSidebar: false }">
+    <div id="dash" x-data="{
+        search: new URLSearchParams(window.location.search).get('search') || '',
+        mobileSidebar: false,
+        items: {{ json_encode($announcements->map(fn($a) => [
+            'title' => $a->title,
+            'body' => Str::limit($a->content, 120),
+            'priority' => $a->priority,
+            'priorityColor' => match($a->priority) { 'high' => '#dc2626', 'medium' => '#f5a524', 'low' => '#16a34a', default => '#6b7280' },
+            'date' => $a->created_at->format('M d, Y'),
+        ])) }},
+        get filtered() {
+            if (!this.search) return this.items;
+            const q = this.search.toLowerCase();
+            return this.items.filter(i => i.title.toLowerCase().includes(q) || i.body.toLowerCase().includes(q) || i.priority.toLowerCase().includes(q));
+        }
+    }">
         <x-student.dash-layout title="Announcements">
             <div class="dash-content">
                 <div class="stats-row">
@@ -39,36 +54,32 @@
                         </div>
                     </div>
                 </div>
-                @if(count($announcements))
+                <template x-if="filtered.length === 0 && search">
+                    <div class="empty-state"><i class="fas fa-search"></i><h3>No matches</h3><p>No announcements match "<span x-text="search"></span>"</p></div>
+                </template>
+                <template x-if="filtered.length === 0 && !search">
+                    <div class="empty-state"><i class="fas fa-bullhorn"></i><h3>No Announcements</h3><p>No announcements have been posted yet.</p></div>
+                </template>
+                <template x-if="filtered.length > 0">
                     <div class="resource-list">
-                        @foreach($announcements as $announcement)
-                            @php
-                                $priorityColor = match($announcement->priority) {
-                                    'high' => '#dc2626',
-                                    'medium' => '#f5a524',
-                                    'low' => '#16a34a',
-                                    default => '#6b7280'
-                                };
-                            @endphp
+                        <template x-for="item in filtered" :key="item.title">
                             <div class="resource-item">
                                 <div class="resource-item-icon" style="background:#091c3d15;color:#091c3d"><i class="fas fa-bullhorn"></i></div>
                                 <div class="resource-item-body">
-                                    <div class="resource-item-title">{{ $announcement->title }}</div>
+                                    <div class="resource-item-title" x-text="item.title"></div>
                                     <div class="resource-item-meta">
-                                        <span>{{ Str::limit($announcement->content, 120) }}</span>
-                                        <span class="resource-item-badge" style="background:{{ $priorityColor }}15;color:{{ $priorityColor }}">{{ ucfirst($announcement->priority) }}</span>
-                                        <span>{{ $announcement->created_at->format('M d, Y') }}</span>
+                                        <span x-text="item.body"></span>
+                                        <span class="resource-item-badge" :style="'background:' + item.priorityColor + '15;color:' + item.priorityColor" x-text="item.priority.charAt(0).toUpperCase() + item.priority.slice(1)"></span>
+                                        <span x-text="item.date"></span>
                                     </div>
                                 </div>
                                 <div class="resource-item-action">
                                     <a href="#">Read More</a>
                                 </div>
                             </div>
-                        @endforeach
+                        </template>
                     </div>
-                @else
-                    <div class="empty-state"><i class="fas fa-bullhorn"></i><h3>No Announcements</h3><p>No announcements have been posted yet.</p></div>
-                @endif
+                </template>
             </div>
         </x-student.dash-layout>
     </div>

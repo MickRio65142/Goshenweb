@@ -40,6 +40,7 @@ class LiveClassResource extends Resource
             ->columns([
                 TextColumn::make('course.name')
                     ->label('Course')
+                    ->searchable()
                     ->weight('semibold'),
                 TextColumn::make('platform')
                     ->badge()
