@@ -51,7 +51,7 @@
                 </template>
 
                 {{-- Exam Form --}}
-                <form id="exam-form" action="{{ route('student.exam.submit', ['attemptId' => $attempt->id]) }}" method="POST">
+                <form id="exam-form" action="{{ route('student.exam.submit', ['attempt' => $attempt->id]) }}" method="POST">
                     @csrf
 
                     @if($perQuestion)

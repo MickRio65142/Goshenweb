@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Notification;
 
 class StudentExamController extends Controller
 {
-    public function start($examId)
+    public function start(Exam $exam)
     {
-        $exam = Exam::withCount('questions')->findOrFail($examId);
+        $exam->loadCount('questions');
 
         if (Setting::where('key', 'exam_portal_open')->value('value') !== 'true') {
             return redirect()->back()->with('error', 'The exam portal is currently closed.');
@@ -51,19 +51,19 @@ class StudentExamController extends Controller
             'started_at' => now(),
         ]);
 
-        return redirect()->route('student.exam.take', ['attemptId' => $attempt->id]);
+        return redirect()->route('student.exam.take', ['attempt' => $attempt->id]);
     }
 
-    public function take($attemptId)
+    public function take(ExamAttempt $attempt)
     {
-        $attempt = ExamAttempt::with('exam')->findOrFail($attemptId);
+        $attempt->load('exam');
 
         if ($attempt->user_id !== Auth::id()) {
             abort(403);
         }
 
         if ($attempt->completed_at) {
-            return redirect()->route('student.exam.result', ['attemptId' => $attempt->id]);
+            return redirect()->route('student.exam.result', ['attempt' => $attempt->id]);
         }
 
         $exam = $attempt->exam;
@@ -89,16 +89,16 @@ class StudentExamController extends Controller
         return view('filament.student.exam.take', compact('exam', 'attempt', 'questions', 'timeRemaining'));
     }
 
-    public function submit(Request $request, $attemptId)
+    public function submit(Request $request, ExamAttempt $attempt)
     {
-        $attempt = ExamAttempt::with('exam')->findOrFail($attemptId);
+        $attempt->load('exam');
 
         if ($attempt->user_id !== Auth::id()) {
             abort(403);
         }
 
         if ($attempt->completed_at) {
-            return redirect()->route('student.exam.result', ['attemptId' => $attempt->id]);
+            return redirect()->route('student.exam.result', ['attempt' => $attempt->id]);
         }
 
         $exam = $attempt->exam;
@@ -127,12 +127,12 @@ class StudentExamController extends Controller
         $admins = \App\Models\User::where('role', 'admin')->get();
         Notification::send($admins, new \App\Notifications\ExamSubmitted($attempt));
 
-        return redirect()->route('student.exam.result', ['attemptId' => $attempt->id]);
+        return redirect()->route('student.exam.result', ['attempt' => $attempt->id]);
     }
 
-    public function result($attemptId)
+    public function result(ExamAttempt $attempt)
     {
-        $attempt = ExamAttempt::with('exam')->findOrFail($attemptId);
+        $attempt->load('exam');
 
         if ($attempt->user_id !== Auth::id()) {
             abort(403);
@@ -159,6 +159,6 @@ class StudentExamController extends Controller
         $admins = \App\Models\User::where('role', 'admin')->get();
         Notification::send($admins, new \App\Notifications\ExamSubmitted($attempt));
 
-        return redirect()->route('student.exam.result', ['attemptId' => $attempt->id]);
+        return redirect()->route('student.exam.result', ['attempt' => $attempt->id]);
     }
 }

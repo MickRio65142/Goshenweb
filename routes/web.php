@@ -89,9 +89,9 @@ Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCa
 // Student Exam Routes (authenticated)
 Route::middleware('auth')->group(function () {
     Route::get('/student/exams/{exam}/start', [App\Http\Controllers\StudentExamController::class, 'start'])->name('student.exam.start');
-    Route::get('/student/exams/take/{attemptId}', [App\Http\Controllers\StudentExamController::class, 'take'])->name('student.exam.take');
-    Route::post('/student/exams/submit/{attemptId}', [App\Http\Controllers\StudentExamController::class, 'submit'])->name('student.exam.submit');
-    Route::get('/student/exams/result/{attemptId}', [App\Http\Controllers\StudentExamController::class, 'result'])->name('student.exam.result');
+    Route::get('/student/exams/take/{attempt}', [App\Http\Controllers\StudentExamController::class, 'take'])->name('student.exam.take');
+    Route::post('/student/exams/submit/{attempt}', [App\Http\Controllers\StudentExamController::class, 'submit'])->name('student.exam.submit');
+    Route::get('/student/exams/result/{attempt}', [App\Http\Controllers\StudentExamController::class, 'result'])->name('student.exam.result');
 });
 
 // Enrollment & Student Portal handled by Filament
