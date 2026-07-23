@@ -57,6 +57,11 @@ class User extends Authenticatable implements HasAvatar, FilamentUser, MustVerif
         return $this->avatar_url ? asset('storage/' . $this->avatar_url) : null;
     }
 
+    public function sendEmailVerificationNotification(): void
+    {
+        $this->notify(new \Filament\Auth\Notifications\VerifyEmail);
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         if ($panel->getId() === 'student') {

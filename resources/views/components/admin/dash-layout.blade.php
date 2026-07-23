@@ -38,6 +38,7 @@
         ]],
         ['label' => 'Records', 'items' => [
             ['label' => 'Certificates', 'icon' => 'fa-certificate', 'url' => '/admin/certificates', 'pattern' => '/certificates*'],
+            ['label' => 'Certificate Templates', 'icon' => 'fa-file-image', 'url' => '/admin/certificate-templates', 'pattern' => '/certificate-templates*'],
         ]],
         ['label' => 'Finance', 'items' => [
             ['label' => 'Transactions', 'icon' => 'fa-credit-card', 'url' => '/admin/transactions', 'pattern' => '/transactions*'],

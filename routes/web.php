@@ -138,6 +138,8 @@ Route::get('/admin/notifications/poll', function () {
     ]);
 })->middleware('auth');
 
+Route::post('/student/certificates/generate', [\App\Http\Controllers\CertificateController::class, 'generate'])->middleware('auth')->name('student.certificates.generate');
+
 Route::get('/sitemap.xml', function () {
     $urls = [
         ['loc' => '/', 'priority' => '1.0'],

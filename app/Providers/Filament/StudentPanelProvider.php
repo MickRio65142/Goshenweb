@@ -30,6 +30,7 @@ class StudentPanelProvider extends PanelProvider
             ->login()
             ->registration()
             ->passwordReset()
+            ->emailVerification()
             ->profile(\App\Filament\Student\Pages\EditProfile::class)
             
             ->brandLogo(asset('images/logo.png'))
