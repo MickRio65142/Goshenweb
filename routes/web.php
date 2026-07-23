@@ -62,7 +62,7 @@ Route::get('/certificates/verify', function () {
     if (request()->has('certificate_number')) {
         $searched = true;
         $certificate = Certificate::where('certificate_number', request('certificate_number'))
-            ->where('status', 'issued')
+            ->whereIn('status', ['available', 'issued'])
             ->with('user', 'course')
             ->first();
     }

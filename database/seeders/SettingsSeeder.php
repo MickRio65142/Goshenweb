@@ -11,5 +11,6 @@ class SettingsSeeder extends Seeder
     {
         Setting::firstOrCreate(['key' => 'portal_open'], ['value' => 'true']);
         Setting::firstOrCreate(['key' => 'registration_fee'], ['value' => '25000']);
+        Setting::firstOrCreate(['key' => 'exam_portal_open'], ['value' => 'true']);
     }
 }

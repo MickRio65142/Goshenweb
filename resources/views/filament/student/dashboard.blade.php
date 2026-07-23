@@ -179,6 +179,19 @@
 
         <x-student.dash-layout title="Dashboard">
             <div class="dash-content">
+                @php $examPortalOpen = \App\Models\Setting::where('key', 'exam_portal_open')->value('value') === 'true'; @endphp
+                @if($examPortalOpen)
+                    <div class="portal-banner portal-banner-open" style="background: #e8f5e9; border: 1px solid #a5d6a7; color: #1b5e20; padding: 0.75rem 1rem; border-radius: 0.5rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fa-solid fa-door-open" style="font-size: 1.25rem;"></i>
+                        <span style="flex: 1; font-size: 0.9rem; font-weight: 500;">Exam Portal is Open — you can now take your exams.</span>
+                        <a href="/student/exams" style="background: #1b5e20; color: #fff; padding: 0.375rem 1rem; border-radius: 0.375rem; text-decoration: none; font-size: 0.85rem; font-weight: 500; white-space: nowrap;">View Exams</a>
+                    </div>
+                @else
+                    <div class="portal-banner portal-banner-closed" style="background: #fff3e0; border: 1px solid #ffcc80; color: #e65100; padding: 0.75rem 1rem; border-radius: 0.5rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fa-solid fa-door-closed" style="font-size: 1.25rem;"></i>
+                        <span style="flex: 1; font-size: 0.9rem; font-weight: 500;">Exam Portal is currently closed. Check back later.</span>
+                    </div>
+                @endif
                 {{-- Hero Section --}}
                 <section class="hero" aria-labelledby="hero-title">
                     <div class="hero-text">

@@ -127,6 +127,8 @@ class StudentExamController extends Controller
         $admins = \App\Models\User::where('role', 'admin')->get();
         Notification::send($admins, new \App\Notifications\ExamSubmitted($attempt));
 
+        auth()->user()->notify(new \App\Notifications\ExamSubmitted($attempt));
+
         return redirect()->route('student.exam.result', ['attempt' => $attempt->id]);
     }
 
@@ -158,6 +160,8 @@ class StudentExamController extends Controller
 
         $admins = \App\Models\User::where('role', 'admin')->get();
         Notification::send($admins, new \App\Notifications\ExamSubmitted($attempt));
+
+        auth()->user()->notify(new \App\Notifications\ExamSubmitted($attempt));
 
         return redirect()->route('student.exam.result', ['attempt' => $attempt->id]);
     }

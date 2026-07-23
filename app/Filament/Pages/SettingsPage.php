@@ -3,6 +3,8 @@
 namespace App\Filament\Pages;
 
 use App\Models\Setting;
+use App\Models\User;
+use App\Notifications\ExamPortalStatusChanged;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -10,6 +12,7 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Schemas\Schema;
 use Filament\Pages\Page;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Notification as NotificationFacade;
 
 class SettingsPage extends Page implements HasForms
 {
@@ -81,9 +84,15 @@ class SettingsPage extends Page implements HasForms
 
     public function save(): void
     {
+        $oldExamPortal = Setting::where('key', 'exam_portal_open')->value('value');
+        $oldPortal = Setting::where('key', 'portal_open')->value('value');
+
+        $newExamPortal = $this->data['exam_portal_open'] ? 'true' : 'false';
+        $newPortal = $this->data['portal_open'] ? 'true' : 'false';
+
         Setting::updateOrCreate(
             ['key' => 'portal_open'],
-            ['value' => $this->data['portal_open'] ? 'true' : 'false']
+            ['value' => $newPortal]
         );
         Setting::updateOrCreate(
             ['key' => 'registration_fee'],
@@ -91,8 +100,20 @@ class SettingsPage extends Page implements HasForms
         );
         Setting::updateOrCreate(
             ['key' => 'exam_portal_open'],
-            ['value' => $this->data['exam_portal_open'] ? 'true' : 'false']
+            ['value' => $newExamPortal]
         );
+
+        if ($oldExamPortal !== $newExamPortal) {
+            $students = User::where('role', 'student')->get();
+            $status = $newExamPortal === 'true' ? 'open' : 'closed';
+            NotificationFacade::send($students, new ExamPortalStatusChanged($status, 'exam'));
+        }
+
+        if ($oldPortal !== $newPortal) {
+            $students = User::where('role', 'student')->get();
+            $status = $newPortal === 'true' ? 'open' : 'closed';
+            NotificationFacade::send($students, new ExamPortalStatusChanged($status, 'registration'));
+        }
 
         Notification::make()
             ->title('Settings saved successfully.')
