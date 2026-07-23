@@ -4,7 +4,12 @@
         $enrollCount = \App\Models\Enrollment::where('user_id', $users->id)->count();
         $avgProgress = (int) \App\Models\Enrollment::where('user_id', $users->id)->avg('progress_percentage');
         $memberSince = $users->created_at->format('M Y');
-        $avatarUrl = $users->avatar_url ? asset('storage/' . $users->avatar_url) : 'https://ui-avatars.com/api/?name=' . urlencode($users->name) . '&background=091c3d&color=fff&size=200';
+        $liveAvatar = $this->data['avatar_url'] ?? null;
+        $avatarUrl = $liveAvatar
+            ? asset('storage/' . $liveAvatar)
+            : ($users->avatar_url
+                ? asset('storage/' . $users->avatar_url)
+                : 'https://ui-avatars.com/api/?name=' . urlencode($users->name) . '&background=091c3d&color=fff&size=200');
         $pendingDocs = \App\Models\StudentDocument::where('user_id', $users->id)->where('status', 'pending')->count();
         $program = optional(\App\Models\Enrollment::where('user_id', $users->id)->with('course')->first())->course->name ?? 'No Program Assigned';
     @endphp

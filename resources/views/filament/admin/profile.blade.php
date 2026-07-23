@@ -1,9 +1,12 @@
 <x-filament-panels::page>
     @php
         $users = auth()->user();
-        $avatarUrl = $users->avatar_url
-            ? asset('storage/' . $users->avatar_url)
-            : 'https://ui-avatars.com/api/?name=' . urlencode($users->name) . '&background=091c3d&color=fff&size=200';
+        $liveAvatar = $this->data['avatar_url'] ?? null;
+        $avatarUrl = $liveAvatar
+            ? asset('storage/' . $liveAvatar)
+            : ($users->avatar_url
+                ? asset('storage/' . $users->avatar_url)
+                : 'https://ui-avatars.com/api/?name=' . urlencode($users->name) . '&background=091c3d&color=fff&size=200');
     @endphp
     <style>
         .ap-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 28px; }

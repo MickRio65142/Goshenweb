@@ -9,6 +9,8 @@ use Filament\Widgets\TableWidget as BaseWidget;
 
 class RecentDocumentsWidget extends BaseWidget
 {
+    protected static ?string $pollingInterval = '30s';
+
     protected int|string|array $columnSpan = 'full';
 
     public function table(Table $table): Table

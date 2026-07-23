@@ -2,7 +2,9 @@
 @php
     $user = auth()->user();
     $userName = $user->name;
-    $userAvatar = $user->avatar_url ?: 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=091c3d&color=fff&size=200';
+    $userAvatar = $user->avatar_url
+        ? asset('storage/' . $user->avatar_url)
+        : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=091c3d&color=fff&size=200';
     $pageTitle = $title ?? 'Dashboard';
     $is = fn($path) => request()->is('admin' . $path);
     $recentNotifications = $user->notifications()->latest()->take(5)->get();

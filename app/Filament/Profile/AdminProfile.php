@@ -50,4 +50,9 @@ class AdminProfile extends BaseEditProfile
         }
         return $data;
     }
+
+    protected function afterSave(): void
+    {
+        $this->redirect(url()->current(), navigate: true);
+    }
 }

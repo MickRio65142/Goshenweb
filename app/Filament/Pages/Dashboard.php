@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 
 class Dashboard extends BaseDashboard
 {
+    protected static ?string $pollingInterval = '30s';
+
     protected string $view = 'filament.admin.pages.dashboard';
 
     public function getStats(): array
@@ -86,6 +88,8 @@ class Dashboard extends BaseDashboard
     public function getAdminAvatar(): string
     {
         $user = Auth::user();
-        return $user->avatar_url ?: 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=091c3d&color=fff&size=200';
+        return $user->avatar_url
+            ? asset('storage/' . $user->avatar_url)
+            : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=091c3d&color=fff&size=200';
     }
 }

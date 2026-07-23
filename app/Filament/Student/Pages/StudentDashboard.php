@@ -50,7 +50,9 @@ class StudentDashboard extends Page
     public function getUserAvatar(): string
     {
         $user = auth()->user();
-        return $user->avatar_url ?: 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=0d9488&color=fff&size=200';
+        return $user->avatar_url
+            ? asset('storage/' . $user->avatar_url)
+            : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=0d9488&color=fff&size=200';
     }
 
     public function getStudentProgram(): string
