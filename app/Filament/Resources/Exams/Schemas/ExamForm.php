@@ -73,7 +73,6 @@ Reference material (short answer / scenario):
                     ->label('Replace existing questions')
                     ->helperText('Check this to delete all existing questions and replace with bulk import above')
                     ->default(false)
-                    ->visible(fn($get) => !empty($get('bulk_import')))
                     ->columnSpanFull(),
                 Textarea::make('reference_material')
                     ->label('Reference Material (Short Answer / Scenario)')

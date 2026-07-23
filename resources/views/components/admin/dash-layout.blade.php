@@ -100,7 +100,7 @@
                     </div>
                     <div class="notif-dropdown-body">
                         <template x-for="n in notifications" :key="n.id">
-                            <a :href="'{{ url('/admin/notifications') }}'" class="notif-item" :class="{ 'notif-unread': !n.read }">
+                            <a href="{{ url('/admin') }}" class="notif-item" :class="{ 'notif-unread': !n.read }">
                                 <div class="notif-item-dot" :style="'background:' + (n.read ? 'var(--border)' : 'var(--crimson)')"></div>
                                 <div class="notif-item-body">
                                     <div class="notif-item-title" x-text="n.title"></div>
