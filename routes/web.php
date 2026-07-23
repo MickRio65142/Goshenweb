@@ -97,6 +97,13 @@ Route::middleware('auth')->group(function () {
 // Enrollment & Student Portal handled by Filament
 Route::redirect('/enroll', '/packages');
 
+// Mark notification as read
+Route::get('/student/notifications/{id}/mark-as-read', function ($id) {
+    $notification = auth()->user()->notifications()->findOrFail($id);
+    $notification->markAsRead();
+    return back();
+})->middleware('auth')->name('student.notifications.mark-as-read');
+
 // Student notification polling (real-time)
 Route::get('/student/notifications/poll', function () {
     $user = auth()->user();

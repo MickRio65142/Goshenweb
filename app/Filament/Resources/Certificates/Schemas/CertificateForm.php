@@ -30,11 +30,11 @@ class CertificateForm
                     ->required(),
                 Select::make('status')
                     ->options([
-                        'pending' => 'Pending',
+                        'available' => 'Available',
                         'issued' => 'Issued',
                         'revoked' => 'Revoked',
                     ])
-                    ->default('pending')
+                    ->default('available')
                     ->required(),
                 TextInput::make('file_path')
                     ->label('Certificate File Path')

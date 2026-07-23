@@ -21,6 +21,14 @@ class EnrollmentsTable
                 TextColumn::make('course.title')
                     ->label('Course')
                     ->searchable(),
+                TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'active' => 'success',
+                        'pending' => 'warning',
+                        'suspended' => 'danger',
+                        default => 'gray',
+                    }),
                 TextColumn::make('payment_status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {

@@ -23,6 +23,14 @@ class EnrollmentForm
                     ->searchable()
                     ->required()
                     ->label('Course'),
+                Select::make('status')
+                    ->options([
+                        'pending' => 'Pending',
+                        'active' => 'Active',
+                        'suspended' => 'Suspended',
+                    ])
+                    ->default('pending')
+                    ->label('Status'),
                 Select::make('payment_status')
                     ->options([
                         'pending' => 'Pending',

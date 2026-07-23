@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="resource-item-action">
                                     @if(!$item->read_at)
-                                        <a href="{{ route('filament.student.resources.notifications.mark-as-read', $item) }}" style="color: #2563eb; text-decoration: none; font-size: 0.875rem;">Mark as Read</a>
+                                        <a href="{{ route('student.notifications.mark-as-read', $item) }}" style="color: #2563eb; text-decoration: none; font-size: 0.875rem;">Mark as Read</a>
                                     @else
                                         <span style="color: #9ca3af; font-size: 0.875rem;">Done</span>
                                     @endif

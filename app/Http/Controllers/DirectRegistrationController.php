@@ -10,6 +10,7 @@ use App\Services\PaymentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 class DirectRegistrationController extends Controller
@@ -111,6 +112,9 @@ class DirectRegistrationController extends Controller
                 'payment_status' => 'unpaid',
             ]);
         }
+
+        $admins = User::where('role', 'admin')->get();
+        Notification::send($admins, new \App\Notifications\NewRegistration($user, $course['title'] ?? ''));
 
         $toEmail = $this->getCampusEmail($validated['campus']);
         $campusLabel = $this->getCampusLabel($validated['campus']);
@@ -232,6 +236,9 @@ class DirectRegistrationController extends Controller
             }
         }
 
+        $admins = User::where('role', 'admin')->get();
+        Notification::send($admins, new \App\Notifications\NewRegistration($user, 'Healthcare Package'));
+
         $toEmail = $this->getCampusEmail($validated['campus']);
         $campusLabel = $this->getCampusLabel($validated['campus']);
 
@@ -352,6 +359,9 @@ class DirectRegistrationController extends Controller
                 ]);
             }
         }
+
+        $admins = User::where('role', 'admin')->get();
+        Notification::send($admins, new \App\Notifications\NewRegistration($user, 'Silver Package'));
 
         $toEmail = $this->getCampusEmail($validated['campus']);
         $campusLabel = $this->getCampusLabel($validated['campus']);
@@ -489,6 +499,9 @@ class DirectRegistrationController extends Controller
                 ]);
             }
         }
+
+        $admins = User::where('role', 'admin')->get();
+        Notification::send($admins, new \App\Notifications\NewRegistration($user, 'Gold Package'));
 
         $toEmail = $this->getCampusEmail($validated['campus']);
         $campusLabel = $this->getCampusLabel($validated['campus']);

@@ -113,7 +113,7 @@
                             <i class="fas fa-bell-slash"></i><p>No notifications yet</p>
                         </div>
                     </div>
-                    <a href="{{ url('/admin/notifications') }}" class="notif-view-all"><i class="fas fa-arrow-right"></i> View All Notifications</a>
+                    <a href="{{ url('/admin') }}" class="notif-view-all"><i class="fas fa-arrow-right"></i> View All Notifications</a>
                 </div>
             </div>
             <div class="header-profile-btn" x-data="{ open: false }" x-on:click.outside="open = false">

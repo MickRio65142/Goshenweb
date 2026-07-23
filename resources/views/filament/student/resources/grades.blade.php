@@ -3,8 +3,8 @@
         $grades = \App\Models\Grade::where('user_id', auth()->id())->with('course')->get();
         $total = $grades->count();
         $averageTotal = $grades->whereNotNull('total_mark')->avg('total_mark');
-        $highestGrade = $grades->whereNotNull('grade')->sortByDesc('total_mark')->first()?->grade ?? 'N/A';
-        $countA = $grades->where('grade', 'A')->count();
+        $highestGrade = $grades->whereNotNull('grade_letter')->sortByDesc('total_mark')->first()?->grade_letter ?? 'N/A';
+        $countA = $grades->where('grade_letter', 'A')->count();
     @endphp
     <div id="dash" x-data="{ search: '', mobileSidebar: false }">
         <x-student.dash-layout title="My Grades & CA">
@@ -43,7 +43,7 @@
                     <div class="resource-list">
                         @foreach($grades as $grade)
                             @php
-                                $gradeColor = match($grade->grade) {
+                                $gradeColor = match($grade->grade_letter) {
                                     'A', 'B' => '#16a34a',
                                     'C' => '#f5a524',
                                     'D' => '#ea580c',
@@ -60,8 +60,8 @@
                                         <span>CA: {{ $grade->ca_mark ?? 'N/A' }}</span>
                                         <span>Exam: {{ $grade->exam_mark ?? 'N/A' }}</span>
                                         <span><strong>{{ $grade->total_mark ?? 'N/A' }}</strong></span>
-                                        @if($grade->grade)
-                                            <span class="resource-item-badge" style="background:{{ $gradeColor }}15;color:{{ $gradeColor }}">{{ $grade->grade }}</span>
+                                        @if($grade->grade_letter)
+                                            <span class="resource-item-badge" style="background:{{ $gradeColor }}15;color:{{ $gradeColor }}">{{ $grade->grade_letter }}</span>
                                         @endif
                                     </div>
                                 </div>
