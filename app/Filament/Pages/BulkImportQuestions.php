@@ -20,13 +20,13 @@ use Illuminate\Support\Facades\Storage;
 
 class BulkImportQuestions extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-document-arrow-up';
+    protected static $navigationIcon = 'heroicon-o-document-arrow-up';
 
-    protected static ?string $navigationLabel = 'Bulk Import';
+    protected static $navigationLabel = 'Bulk Import';
 
-    protected static ?string $navigationGroup = 'Academics';
+    protected static $navigationGroup = 'Academics';
 
-    protected static ?int $navigationSort = 7;
+    protected static $navigationSort = 7;
 
     protected string $view = 'filament.admin.pages.bulk-import-questions';
 
