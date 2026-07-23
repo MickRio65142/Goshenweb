@@ -139,9 +139,8 @@ class StudentExamController extends Controller
         }
 
         $exam = $attempt->exam;
-        $referenceMaterial = $exam->reference_material ?? [];
 
-        return view('filament.student.exam.result', compact('attempt', 'exam', 'referenceMaterial'));
+        return view('filament.student.exam.result', compact('attempt', 'exam'));
     }
 
     private function autoSubmit($attempt)

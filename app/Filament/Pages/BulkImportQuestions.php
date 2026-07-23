@@ -40,6 +40,8 @@ class BulkImportQuestions extends Page
 
     public $exam = null;
 
+    public int $previewPage = 1;
+
     public function mount(): void
     {
         $this->form->fill();
@@ -257,5 +259,20 @@ class BulkImportQuestions extends Page
     public function hasParsedQuestions(): bool
     {
         return !empty($this->parsedQuestions);
+    }
+
+    public function nextPage(): void
+    {
+        $totalPages = (int) ceil(count($this->parsedQuestions) / 10);
+        if ($this->previewPage < $totalPages) {
+            $this->previewPage++;
+        }
+    }
+
+    public function prevPage(): void
+    {
+        if ($this->previewPage > 1) {
+            $this->previewPage--;
+        }
     }
 }

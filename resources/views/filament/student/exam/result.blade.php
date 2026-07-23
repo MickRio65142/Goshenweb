@@ -40,31 +40,6 @@
                     </div>
                 </div>
 
-                {{-- Reference Material --}}
-                @if(!empty($referenceMaterial))
-                <div class="dash-section-card">
-                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
-                        <div style="width:40px;height:40px;border-radius:50%;background:var(--crimson-light);display:flex;align-items:center;justify-content:center;">
-                            <i class="fas fa-book-open" style="color:var(--crimson);"></i>
-                        </div>
-                        <h2 style="font-size:18px;font-weight:700;color:var(--text);margin:0;">Study Reference</h2>
-                    </div>
-                    <div style="display:flex;flex-direction:column;gap:16px;">
-                        @foreach($referenceMaterial as $item)
-                        <div style="border-bottom:1px solid var(--border);padding-bottom:16px;{{ $loop->last ? 'border-bottom:none;padding-bottom:0;' : '' }}">
-                            <p style="font-weight:600;color:var(--text);margin:0 0 8px;">{{ $item['question'] ?? '' }}</p>
-                            @if(!empty($item['answers']))
-                            <ul style="margin:0;padding-left:20px;font-size:13px;color:var(--text-muted);display:flex;flex-direction:column;gap:4px;">
-                                @foreach($item['answers'] as $answer)
-                                <li>{{ $answer }}</li>
-                                @endforeach
-                            </ul>
-                            @endif
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-                @endif
             </div>
         </div>
     </x-student.dash-layout>

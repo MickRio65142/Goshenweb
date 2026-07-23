@@ -127,8 +127,15 @@
                         </div>
                     </div>
 
-                    {{-- Question Previews (first 10) --}}
-                    @foreach(array_slice($this->parsedQuestions, 0, 10) as $q)
+                    {{-- Question Previews (paginated) --}}
+                    @php
+                        $perPage = 10;
+                        $totalQuestions = count($this->parsedQuestions);
+                        $totalPages = (int) ceil($totalQuestions / $perPage);
+                        $offset = ($this->previewPage - 1) * $perPage;
+                        $pageQuestions = array_slice($this->parsedQuestions, $offset, $perPage);
+                    @endphp
+                    @foreach($pageQuestions as $q)
                     <div class="q-preview">
                         <div class="q-preview-header">
                             <span class="q-type {{ $q['type'] === 'multiple_choice' ? 'mc' : ($q['type'] === 'true_false' ? 'tf' : ($q['type'] === 'short_answer' ? 'sa' : 'sc')) }}">
@@ -159,10 +166,18 @@
                     </div>
                     @endforeach
 
-                    @if(count($this->parsedQuestions) > 10)
-                    <p style="text-align: center; font-size: 13px; color: var(--text-muted); margin: 12px 0;">
-                        Showing 10 of {{ count($this->parsedQuestions) }} questions
-                    </p>
+                    @if($totalPages > 1)
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin: 16px 0;">
+                        <button wire:click="prevPage" class="btn-secondary" style="padding: 8px 16px;" {{ $this->previewPage <= 1 ? 'disabled' : '' }}>
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <span style="font-size: 13px; color: var(--text-muted);">
+                            Page {{ $this->previewPage }} of {{ $totalPages }} ({{ $totalQuestions }} questions)
+                        </span>
+                        <button wire:click="nextPage" class="btn-secondary" style="padding: 8px 16px;" {{ $this->previewPage >= $totalPages ? 'disabled' : '' }}>
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
                     @endif
 
                     {{-- Actions --}}

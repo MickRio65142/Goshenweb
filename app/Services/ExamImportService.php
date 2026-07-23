@@ -153,6 +153,12 @@ class ExamImportService
                         $isTrueFalse = true;
                         $correctOption = ucfirst(strtolower($tfMatch[1]));
                     }
+
+                    if (preg_match('/\s+Answer:\s*(.+)$/i', $questionText, $inlineAnswer)) {
+                        $questionText = trim(substr($questionText, 0, strpos($questionText, $inlineAnswer[0])));
+                        $isShortAnswer = true;
+                        $answers[] = trim($inlineAnswer[1]);
+                    }
                 } elseif (preg_match('/^[Aa][\.\)]\s*(.+)/', $line, $m)) {
                     $options['a'] = $m[1];
                 } elseif (preg_match('/^[Bb][\.\)]\s*(.+)/', $line, $m)) {
